@@ -3,7 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => (
-  <section className="flex min-h-screen items-center justify-center px-4 pt-16">
+  <section className="flex min-h-screen snap-center items-center justify-center px-4 pt-16">
     <div className="container max-w-3xl text-center">
       <motion.p
         initial={{ opacity: 0, y: 16 }}
@@ -11,7 +11,7 @@ const Hero = () => (
         transition={{ duration: 0.5 }}
         className="mb-4 text-body-lg text-primary font-medium"
       >
-        Hi, I'm Luiz Hondo
+        Olá, eu sou
       </motion.p>
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
@@ -19,9 +19,9 @@ const Hero = () => (
         transition={{ duration: 0.5, delay: 0.1 }}
         className="text-display-sm md:text-display text-foreground"
       >
-        Front-End Developer
+        Luiz Hondo
         <br />
-        <span className="text-primary">& Mobile Enthusiast</span>
+        <span className="text-primary">Desenvolvedor Fullstack</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,8 @@ const Hero = () => (
         transition={{ duration: 0.5, delay: 0.2 }}
         className="mt-6 text-body-lg text-muted-foreground max-w-xl mx-auto"
       >
-        I build clean, performant, and accessible web & mobile experiences with React, React Native, and modern JavaScript.
+        I build clean, performant, and accessible web & mobile experiences with
+        React, React Native, and modern JavaScript.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -51,7 +52,7 @@ const Hero = () => (
         className="mt-16"
       >
         <a href="#about" aria-label="Scroll down">
-          <ArrowDown className="mx-auto h-5 w-5 animate-bounce text-muted-foreground" />
+          <ArrowDown className="mx-auto h-10 w-10 animate-bounce text-muted-foreground" />
         </a>
       </motion.div>
     </div>

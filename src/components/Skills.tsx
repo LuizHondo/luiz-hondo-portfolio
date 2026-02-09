@@ -1,4 +1,11 @@
-import { Code2, Palette, Wrench, TestTube, Smartphone, FileCode } from "lucide-react";
+import {
+  Code2,
+  Palette,
+  Wrench,
+  TestTube,
+  Smartphone,
+  FileCode,
+} from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const categories = [
@@ -30,7 +37,7 @@ const categories = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="py-24 bg-muted/40">
+  <section id="skills" className="py-24 bg-muted/40 snap-center min-h-screen">
     <div className="container max-w-4xl">
       <ScrollReveal>
         <h2 className="text-heading text-foreground mb-2">Skills</h2>
@@ -45,7 +52,9 @@ const Skills = () => (
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
                   {cat.icon}
                 </div>
-                <h3 className="text-body font-semibold text-foreground">{cat.title}</h3>
+                <h3 className="text-body font-semibold text-foreground">
+                  {cat.title}
+                </h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (

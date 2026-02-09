@@ -4,6 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "./ScrollReveal";
 import CaseStudyModal, { type CaseStudy } from "./CaseStudyModal";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Project {
   title: string;
@@ -22,9 +29,12 @@ const projects: Project[] = [
     caseStudy: {
       title: "E-Commerce Mobile App",
       summary: "A full-featured shopping app built with React Native and Expo.",
-      problem: "Small businesses lacked affordable, polished mobile shopping experiences.",
-      solution: "Built a cross-platform e-commerce app with a seamless checkout flow and real-time inventory.",
-      process: "Started with user research, designed in Figma, iterated through 3 sprints, and launched on both stores.",
+      problem:
+        "Small businesses lacked affordable, polished mobile shopping experiences.",
+      solution:
+        "Built a cross-platform e-commerce app with a seamless checkout flow and real-time inventory.",
+      process:
+        "Started with user research, designed in Figma, iterated through 3 sprints, and launched on both stores.",
       stack: ["React Native", "Expo", "TypeScript", "Zustand", "Stripe"],
       github: "https://github.com",
     },
@@ -36,10 +46,14 @@ const projects: Project[] = [
     github: "https://github.com",
     caseStudy: {
       title: "Developer Portfolio",
-      summary: "A neo-minimalist portfolio site showcasing projects and skills.",
-      problem: "Needed a fast, beautiful, and accessible way to present my work online.",
-      solution: "Designed a single-page portfolio with scroll animations, dark mode, and a working contact form.",
-      process: "Defined design tokens first, built reusable components, polished with motion and accessibility checks.",
+      summary:
+        "A neo-minimalist portfolio site showcasing projects and skills.",
+      problem:
+        "Needed a fast, beautiful, and accessible way to present my work online.",
+      solution:
+        "Designed a single-page portfolio with scroll animations, dark mode, and a working contact form.",
+      process:
+        "Defined design tokens first, built reusable components, polished with motion and accessibility checks.",
       stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Zod"],
       github: "https://github.com",
     },
@@ -53,8 +67,10 @@ const projects: Project[] = [
       title: "Task Manager Dashboard",
       summary: "A clean productivity dashboard with drag-and-drop task boards.",
       problem: "Existing tools were bloated and slow for small teams.",
-      solution: "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
-      process: "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
+      solution:
+        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+      process:
+        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
       stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
       github: "https://github.com",
     },
@@ -65,7 +81,7 @@ const Projects = () => {
   const [selected, setSelected] = useState<CaseStudy | null>(null);
 
   return (
-    <section id="projects" className="py-24">
+    <section id="projects" className="py-24 snap-center min-h-screen">
       <div className="container max-w-4xl">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">Projects</h2>
@@ -80,8 +96,12 @@ const Projects = () => {
                   <FolderOpen className="h-10 w-10 text-muted-foreground/50" />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-body font-semibold text-foreground mb-1">{p.title}</h3>
-                  <p className="text-body-sm text-muted-foreground mb-4 flex-1">{p.summary}</p>
+                  <h3 className="text-body font-semibold text-foreground mb-1">
+                    {p.title}
+                  </h3>
+                  <p className="text-body-sm text-muted-foreground mb-4 flex-1">
+                    {p.summary}
+                  </p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {p.stack.map((t) => (
                       <Badge key={t} variant="outline" className="text-caption">
@@ -90,11 +110,20 @@ const Projects = () => {
                     ))}
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button size="sm" variant="default" onClick={() => setSelected(p.caseStudy)}>
+                    <Button
+                      size="sm"
+                      variant="default"
+                      onClick={() => setSelected(p.caseStudy)}
+                    >
                       View Case Study
                     </Button>
                     <Button size="sm" variant="ghost" asChild>
-                      <a href={p.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                      >
                         <ExternalLink className="h-4 w-4" />
                       </a>
                     </Button>
@@ -106,7 +135,11 @@ const Projects = () => {
         </div>
       </div>
 
-      <CaseStudyModal study={selected} open={!!selected} onOpenChange={(o) => !o && setSelected(null)} />
+      <CaseStudyModal
+        study={selected}
+        open={!!selected}
+        onOpenChange={(o) => !o && setSelected(null)}
+      />
     </section>
   );
 };

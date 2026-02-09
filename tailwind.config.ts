@@ -1,8 +1,14 @@
 import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -17,14 +23,26 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "display": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
-        "display-sm": ["2.5rem", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "800" }],
-        "heading": ["2rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
-        "heading-sm": ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "700" }],
+        display: [
+          "3.5rem",
+          { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" },
+        ],
+        "display-sm": [
+          "2.5rem",
+          { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "800" },
+        ],
+        heading: [
+          "2rem",
+          { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" },
+        ],
+        "heading-sm": [
+          "1.5rem",
+          { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "700" },
+        ],
         "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }],
-        "body": ["1rem", { lineHeight: "1.6", fontWeight: "400" }],
+        body: ["1rem", { lineHeight: "1.6", fontWeight: "400" }],
         "body-sm": ["0.875rem", { lineHeight: "1.5", fontWeight: "400" }],
-        "caption": ["0.75rem", { lineHeight: "1.4", fontWeight: "500" }],
+        caption: ["0.75rem", { lineHeight: "1.4", fontWeight: "500" }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,5 +110,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindAnimate],
 } satisfies Config;

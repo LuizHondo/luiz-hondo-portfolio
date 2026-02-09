@@ -38,22 +38,38 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
 
         <div className="space-y-6 pt-2">
           <div>
-            <h4 className="text-body font-semibold text-foreground mb-1">Problem</h4>
-            <p className="text-body-sm text-muted-foreground">{study.problem}</p>
+            <h4 className="text-body font-semibold text-foreground mb-1">
+              Problem
+            </h4>
+            <p className="text-body-sm text-muted-foreground">
+              {study.problem}
+            </p>
           </div>
           <div>
-            <h4 className="text-body font-semibold text-foreground mb-1">Solution</h4>
-            <p className="text-body-sm text-muted-foreground">{study.solution}</p>
+            <h4 className="text-body font-semibold text-foreground mb-1">
+              Solution
+            </h4>
+            <p className="text-body-sm text-muted-foreground">
+              {study.solution}
+            </p>
           </div>
           <div>
-            <h4 className="text-body font-semibold text-foreground mb-1">Process</h4>
-            <p className="text-body-sm text-muted-foreground">{study.process}</p>
+            <h4 className="text-body font-semibold text-foreground mb-1">
+              Process
+            </h4>
+            <p className="text-body-sm text-muted-foreground">
+              {study.process}
+            </p>
           </div>
           <div>
-            <h4 className="text-body font-semibold text-foreground mb-1">Tech Stack</h4>
+            <h4 className="text-body font-semibold text-foreground mb-1">
+              Tech Stack
+            </h4>
             <div className="flex flex-wrap gap-2">
               {study.stack.map((t) => (
-                <Badge key={t} variant="secondary">{t}</Badge>
+                <Badge key={t} variant="secondary">
+                  {t}
+                </Badge>
               ))}
             </div>
           </div>

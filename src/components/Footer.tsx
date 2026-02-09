@@ -7,13 +7,29 @@ const Footer = () => (
         © {new Date().getFullYear()} Luiz Hondo. All rights reserved.
       </p>
       <div className="flex items-center gap-3">
-        <a href="mailto:hello@luizhondo.dev" aria-label="Email" className="text-muted-foreground hover:text-foreground transition-colors">
+        <a
+          href="mailto:hello@luizhondo.dev"
+          aria-label="Email"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Mail className="h-5 w-5" />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-muted-foreground hover:text-foreground transition-colors">
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Instagram className="h-5 w-5" />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-muted-foreground hover:text-foreground transition-colors">
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Linkedin className="h-5 w-5" />
         </a>
       </div>

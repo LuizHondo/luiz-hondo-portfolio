@@ -34,17 +34,27 @@ const Contact = () => {
     try {
       // TODO: wire to Supabase Edge Function + Resend
       console.log("Contact form submitted:", data);
-      toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+      toast({
+        title: "Message sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
       reset();
     } catch {
-      toast({ title: "Error", description: "Something went wrong. Please try again.", variant: "destructive" });
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="py-24 bg-muted/40">
+    <section
+      id="contact"
+      className="py-24 min-h-screen bg-muted/40 snap-center"
+    >
       <div className="container max-w-2xl">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">Get in Touch</h2>
@@ -58,20 +68,54 @@ const Contact = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Your name" {...register("name")} className="mt-1.5" />
-              {errors.name && <p className="text-caption text-destructive mt-1">{errors.name.message}</p>}
+              <Input
+                id="name"
+                placeholder="Your name"
+                {...register("name")}
+                className="mt-1.5"
+              />
+              {errors.name && (
+                <p className="text-caption text-destructive mt-1">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="you@example.com" {...register("email")} className="mt-1.5" />
-              {errors.email && <p className="text-caption text-destructive mt-1">{errors.email.message}</p>}
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                {...register("email")}
+                className="mt-1.5"
+              />
+              {errors.email && (
+                <p className="text-caption text-destructive mt-1">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div>
               <Label htmlFor="message">Message</Label>
-              <Textarea id="message" placeholder="Tell me about your project..." rows={5} {...register("message")} className="mt-1.5" />
-              {errors.message && <p className="text-caption text-destructive mt-1">{errors.message.message}</p>}
+              <Textarea
+                id="message"
+                placeholder="Tell me about your project..."
+                rows={5}
+                {...register("message")}
+                className="mt-1.5"
+              />
+              {errors.message && (
+                <p className="text-caption text-destructive mt-1">
+                  {errors.message.message}
+                </p>
+              )}
             </div>
-            <Button type="submit" size="lg" className="gap-2" disabled={loading}>
+            <Button
+              type="submit"
+              size="lg"
+              className="gap-2"
+              disabled={loading}
+            >
               <Send className="h-4 w-4" />
               {loading ? "Sending..." : "Send Message"}
             </Button>
