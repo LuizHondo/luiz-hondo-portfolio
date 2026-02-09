@@ -75,6 +75,40 @@ const projects: Project[] = [
       github: "https://github.com",
     },
   },
+  {
+    title: "Task Manager Dashboard",
+    summary: "A clean productivity dashboard with drag-and-drop task boards.",
+    stack: ["React", "TypeScript", "Tailwind CSS"],
+    github: "https://github.com",
+    caseStudy: {
+      title: "Task Manager Dashboard",
+      summary: "A clean productivity dashboard with drag-and-drop task boards.",
+      problem: "Existing tools were bloated and slow for small teams.",
+      solution:
+        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+      process:
+        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
+      stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
+      github: "https://github.com",
+    },
+  },
+  {
+    title: "Task Manager Dashboard",
+    summary: "A clean productivity dashboard with drag-and-drop task boards.",
+    stack: ["React", "TypeScript", "Tailwind CSS"],
+    github: "https://github.com",
+    caseStudy: {
+      title: "Task Manager Dashboard",
+      summary: "A clean productivity dashboard with drag-and-drop task boards.",
+      problem: "Existing tools were bloated and slow for small teams.",
+      solution:
+        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+      process:
+        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
+      stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
+      github: "https://github.com",
+    },
+  },
 ];
 
 const Projects = () => {
@@ -82,57 +116,73 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-24 snap-center min-h-screen">
-      <div className="container max-w-4xl">
+      <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">Projects</h2>
           <div className="h-1 w-12 rounded-full bg-primary mb-10" />
         </ScrollReveal>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => (
-            <ScrollReveal key={p.title} delay={0.1 + i * 0.08}>
-              <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
-                <div className="flex h-36 items-center justify-center bg-muted">
-                  <FolderOpen className="h-10 w-10 text-muted-foreground/50" />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-body font-semibold text-foreground mb-1">
-                    {p.title}
-                  </h3>
-                  <p className="text-body-sm text-muted-foreground mb-4 flex-1">
-                    {p.summary}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {p.stack.map((t) => (
-                      <Badge key={t} variant="outline" className="text-caption">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      size="sm"
-                      variant="default"
-                      onClick={() => setSelected(p.caseStudy)}
-                    >
-                      View Case Study
-                    </Button>
-                    <Button size="sm" variant="ghost" asChild>
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
+        <ScrollReveal>
+          <div className="flex h-full">
+            <Carousel className="w-full" orientation="horizontal">
+              <CarouselContent>
+                {projects.map((p, i) => (
+                  <CarouselItem
+                    key={`${p.title}-${i}`}
+                    className="sm:basis-1/2"
+                  >
+                    <ScrollReveal delay={0.06}>
+                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
+                        <div className="flex h-36 items-center justify-center bg-muted">
+                          <FolderOpen className="h-10 w-10 text-muted-foreground/50" />
+                        </div>
+                        <div className="flex flex-1 flex-col p-5">
+                          <h3 className="text-body font-semibold text-foreground mb-1">
+                            {p.title}
+                          </h3>
+                          <p className="text-body-sm text-muted-foreground mb-4 flex-1">
+                            {p.summary}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5 mb-4">
+                            {p.stack.map((t) => (
+                              <Badge
+                                key={t}
+                                variant="outline"
+                                className="text-caption"
+                              >
+                                {t}
+                              </Badge>
+                            ))}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Button
+                              size="sm"
+                              variant="default"
+                              onClick={() => setSelected(p.caseStudy)}
+                            >
+                              View Case Study
+                            </Button>
+                            <Button size="sm" variant="ghost" asChild>
+                              <a
+                                href={p.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="GitHub"
+                              >
+                                <ExternalLink className="h-4 w-4" />
+                              </a>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselNext className="hidden lg:flex" />
+              <CarouselPrevious className="hidden lg:flex" />
+            </Carousel>
+          </div>
+        </ScrollReveal>
       </div>
 
       <CaseStudyModal
