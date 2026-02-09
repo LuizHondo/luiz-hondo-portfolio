@@ -122,17 +122,17 @@ const Projects = () => {
           <div className="h-1 w-12 rounded-full bg-primary mb-10" />
         </ScrollReveal>
         <ScrollReveal>
-          <div className="flex h-full">
+          <div className="flex h-full sm:min-h-[60vh] min-h-[70vh] items-center">
             <Carousel className="w-full" orientation="horizontal">
-              <CarouselContent>
+              <CarouselContent className="">
                 {projects.map((p, i) => (
                   <CarouselItem
                     key={`${p.title}-${i}`}
-                    className="sm:basis-1/2"
+                    className="sm:basis-1/2 h-full"
                   >
                     <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1">
-                        <div className="flex h-36 items-center justify-center bg-muted">
+                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 mt-10 sm:m-0">
+                        <div className="flex h-[40vh] sm:h-[30vh] items-center justify-center bg-muted">
                           <FolderOpen className="h-10 w-10 text-muted-foreground/50" />
                         </div>
                         <div className="flex flex-1 flex-col p-5">
@@ -178,8 +178,8 @@ const Projects = () => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselNext className="hidden lg:flex" />
-              <CarouselPrevious className="hidden lg:flex" />
+              <CarouselNext className="-right-8 border-none lg:flex lg:border-solid lg:-right-12" />
+              <CarouselPrevious className="-left-8 border-none lg:flex lg:border-solid lg:-left-12" />
             </Carousel>
           </div>
         </ScrollReveal>
