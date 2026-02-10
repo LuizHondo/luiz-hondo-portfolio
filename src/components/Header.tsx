@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Quem sou eu", href: "#about" },
+  { label: "Habilidades", href: "#skills" },
+  { label: "Projetos", href: "#projects" },
+  { label: "Contato", href: "#contact" },
 ];
 
 const Header = () => {
@@ -36,15 +36,24 @@ const Header = () => {
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
           <Button asChild>
-            <a href="#contact">Hire Me</a>
+            <a href="#contact">Solucione seus problemas</a>
           </Button>
         </div>
 
         {/* Mobile toggle */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
-          <Button variant="ghost" size="icon" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </Button>
         </div>
       </div>
@@ -64,7 +73,9 @@ const Header = () => {
               </a>
             ))}
             <Button asChild className="mt-2 w-full">
-              <a href="#contact" onClick={() => setMobileOpen(false)}>Hire Me</a>
+              <a href="#contact" onClick={() => setMobileOpen(false)}>
+                Hire Me
+              </a>
             </Button>
           </div>
         </nav>

@@ -12,6 +12,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import Autoplay from "embla-carousel-autoplay";
+
 interface Project {
   title: string;
   summary: string;
@@ -115,16 +117,35 @@ const Projects = () => {
   const [selected, setSelected] = useState<CaseStudy | null>(null);
 
   return (
-    <section id="projects" className="py-24 snap-center min-h-screen">
+    <section
+      id="projects"
+      className="pt-20 sm:pt-28 pb-10 snap-center min-h-screen"
+    >
       <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">Projects</h2>
           <div className="h-1 w-12 rounded-full bg-primary mb-10" />
         </ScrollReveal>
         <ScrollReveal>
-          <div className="flex h-full sm:min-h-[60vh] min-h-[70vh] items-center">
-            <Carousel className="w-full" orientation="horizontal">
-              <CarouselContent className="">
+          <div className="flex h-full sm:min-h-[60vh] min-h-[70vh] items-center ">
+            <Carousel
+              opts={{
+                align: "center",
+                loop: true,
+                slidesToScroll: 1,
+                dragFree: true,
+              }}
+              className="w-full"
+              orientation="horizontal"
+              plugins={[
+                Autoplay({
+                  delay: 1000,
+                  stopOnMouseEnter: false,
+                  stopOnInteraction: true,
+                }),
+              ]}
+            >
+              <CarouselContent>
                 {projects.map((p, i) => (
                   <CarouselItem
                     key={`${p.title}-${i}`}

@@ -9,14 +9,14 @@ import Footer from "@/components/Footer";
 const Index = () => (
   <>
     <Header />
-    <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
+    <main className="h-screen overflow-y-scroll overflow-y-clip snap-y snap-mandatory">
       <Hero />
       <About />
       <Skills />
       <Projects />
       <Contact />
+      <Footer />
     </main>
-    <Footer />
   </>
 );
 

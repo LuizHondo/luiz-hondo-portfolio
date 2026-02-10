@@ -30,7 +30,7 @@ const timeline = [
 ];
 
 const About = () => (
-  <section id="about" className="py-24 snap-center min-h-screen">
+  <section id="about" className="pt-20 sm:pt-28 snap-center min-h-screen">
     <div className="container max-w-4xl">
       <ScrollReveal>
         <h2 className="text-heading text-foreground mb-2">About Me</h2>

@@ -37,7 +37,10 @@ const categories = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="py-24 bg-muted/40 snap-center min-h-screen">
+  <section
+    id="skills"
+    className="pt-20 sm:pt-28 bg-muted/40 snap-center min-h-screen"
+  >
     <div className="container max-w-4xl">
       <ScrollReveal>
         <h2 className="text-heading text-foreground mb-2">Skills</h2>
