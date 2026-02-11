@@ -34,7 +34,7 @@ const Hero = () => (
         React, React Native, and modern JavaScript.
       </motion.p> */}
       <StaggeredText
-        text="I build clean, performant, and accessible web & mobile|experiences with React, React Native, and modern JavaScript."
+        text="Transformando problemas reais em soluções|que entregam valor de verdade."
         separator="|"
         className="mt-6 text-body-lg text-muted-foreground max-w-xl mx-auto"
         segmentBy="chars"
