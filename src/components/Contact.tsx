@@ -55,7 +55,7 @@ const Contact = () => {
       id="contact"
       className="pt-20 sm:pt-28 min-h-screen bg-muted/40 snap-center"
     >
-      <div className="container max-w-2xl">
+      <div className="container max-w-3xl">
         <ScrollReveal>
           <div className="flex items-center justify-between">
             <div>

@@ -56,11 +56,11 @@ const About = () => (
 
         <div className="space-y-6">
           <ScrollReveal delay={0.15}>
-            <p className="text-body-lg text-muted-foreground">
-              I'm a passionate front-end developer from Brazil who loves
-              crafting clean, accessible, and delightful user interfaces. I
-              specialize in React, React Native, and TypeScript — with a focus
-              on performance and user experience.
+            <p className="text-body-lg text-justify text-muted-foreground">
+              Sou um desenvolvedor front-end brasileiro especializado em criar
+              interfaces rápidas, acessíveis e visualmente consistentes. Atuo
+              com React, React Native e TypeScript, unindo qualidade técnica e
+              foco total na experiência do usuário.
             </p>
           </ScrollReveal>
 
