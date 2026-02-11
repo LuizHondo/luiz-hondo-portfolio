@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import StaggeredText from "./ui/StaggeredText";
 
 const Hero = () => (
   <section className="flex min-h-screen snap-center items-center justify-center px-4 pt-16">
@@ -23,7 +24,7 @@ const Hero = () => (
         <br />
         <span className="text-primary">Desenvolvedor Fullstack</span>
       </motion.h1>
-      <motion.p
+      {/* <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -31,7 +32,19 @@ const Hero = () => (
       >
         I build clean, performant, and accessible web & mobile experiences with
         React, React Native, and modern JavaScript.
-      </motion.p>
+      </motion.p> */}
+      <StaggeredText
+        text="I build clean, performant, and accessible web & mobile|experiences with React, React Native, and modern JavaScript."
+        separator="|"
+        className="mt-6 text-body-lg text-muted-foreground max-w-xl mx-auto"
+        segmentBy="chars"
+        direction="top"
+        delay={40}
+        duration={0.6}
+        blur={true}
+        staggerDirection="forward"
+        exitOnScrollOut={true}
+      />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -184,18 +184,25 @@ const Projects = () => {
                     className="sm:basis-1/2 h-full"
                   >
                     <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-[55vh] hover:-translate-y-1 mt-10 sm:m-0">
+                      <div
+                        className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg 
+                  h-[55vh] min-h-[55vh] flex-shrink-0 hover:-translate-y-1 mt-10 sm:m-0"
+                      >
                         <img
-                          className="flex h-[40vh] sm:h-[30vh] items-center justify-center bg-muted object-cover"
+                          className="flex h-[50%] sm:h-[30vh] min-h-[30vh] 
+                 items-center justify-center bg-muted object-cover flex-shrink-0"
                           src={p.url}
                         />
-                        <div className="flex flex-1 flex-col p-5">
-                          <h3 className="text-body font-semibold text-foreground mb-1">
+
+                        <div className="flex flex-1 flex-col p-5 min-h-[25vh] flex-shrink-0">
+                          <h3 className="text-body font-semibold text-foreground b-1">
                             {p.title}
                           </h3>
+
                           <p className="text-body-sm text-muted-foreground mb-4 flex-1">
                             {p.summary}
                           </p>
+
                           <div className="flex flex-wrap gap-1.5 mb-4">
                             {p.stack.map((t) => (
                               <Badge
@@ -207,6 +214,7 @@ const Projects = () => {
                               </Badge>
                             ))}
                           </div>
+
                           <div className="flex items-center gap-2">
                             <Button
                               size="sm"
@@ -215,6 +223,7 @@ const Projects = () => {
                             >
                               Ver detalhes
                             </Button>
+
                             <Button size="sm" variant="ghost" asChild>
                               <a href={p.github} aria-label="GitHub">
                                 <ExternalLink className="h-4 w-4" />
