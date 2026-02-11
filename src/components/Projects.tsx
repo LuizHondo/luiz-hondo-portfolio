@@ -20,95 +20,127 @@ interface Project {
   stack: string[];
   github: string;
   caseStudy: CaseStudy;
+  url: string;
 }
+// / transfer projects to a separated data file
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Mobile App",
-    summary: "A full-featured shopping app built with React Native and Expo.",
-    stack: ["React Native", "Expo", "TypeScript", "Tailwind"],
-    github: "https://github.com",
+    title: "Lista de Compras Mobile",
+    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471209834824208405/image.png?ex=698e1a6e&is=698cc8ee&hm=7399c61e44d96cfd19a4985ae52f0255e2010c7f4dd93cf4fc1a0eeb74965c00&",
+    summary:
+      "Aplicativo de lista de compras simples construído com React Native e Expo.",
+    stack: ["React Native", "Expo", "TypeScript", "AsyncStorage"],
+    github: "https://github.com/LuizHondo/rn-comprar",
     caseStudy: {
-      title: "E-Commerce Mobile App",
-      summary: "A full-featured shopping app built with React Native and Expo.",
-      problem:
-        "Small businesses lacked affordable, polished mobile shopping experiences.",
-      solution:
-        "Built a cross-platform e-commerce app with a seamless checkout flow and real-time inventory.",
-      process:
-        "Started with user research, designed in Figma, iterated through 3 sprints, and launched on both stores.",
-      stack: ["React Native", "Expo", "TypeScript", "Zustand", "Stripe"],
-      github: "https://github.com",
-    },
-  },
-  {
-    title: "Developer Portfolio",
-    summary: "A neo-minimalist portfolio site showcasing projects and skills.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com",
-    caseStudy: {
-      title: "Developer Portfolio",
+      title: "Lista de Compras Mobile",
       summary:
-        "A neo-minimalist portfolio site showcasing projects and skills.",
+        "Uma lista de compras móvel com persistência local e filtros de status.",
       problem:
-        "Needed a fast, beautiful, and accessible way to present my work online.",
+        "Muitas pessoas precisam de um jeito rápido e leve de gerenciar listas de compras no celular.",
       solution:
-        "Designed a single-page portfolio with scroll animations, dark mode, and a working contact form.",
+        "Desenvolvi um app com filtros de itens pendentes/concluídos e armazenamento local usando AsyncStorage.",
       process:
-        "Defined design tokens first, built reusable components, polished with motion and accessibility checks.",
-      stack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Zod"],
-      github: "https://github.com",
+        "Projetei a interface com foco em UX simples, usando Expo e TypeScript para desenvolver telas, lógica e persistência.",
+      stack: [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "AsyncStorage",
+        "lucide-react-native",
+      ],
+      github: "https://github.com/LuizHondo/rn-comprar",
     },
   },
   {
-    title: "Task Manager Dashboard",
-    summary: "A clean productivity dashboard with drag-and-drop task boards.",
-    stack: ["React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com",
+    title: "Site de Biblioteca Digital",
+    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471213402754908364/image.png?ex=698e1dc1&is=698ccc41&hm=a9d7ad22e3e9e93b20782695709a922cada9268be4cb369713ab09fcc95e818d&.png",
+    summary:
+      "Interface web inspirada em catálogo de biblioteca, com foco em layout e organização.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/LuizHondo/web_project_library_pt",
     caseStudy: {
-      title: "Task Manager Dashboard",
-      summary: "A clean productivity dashboard with drag-and-drop task boards.",
-      problem: "Existing tools were bloated and slow for small teams.",
+      title: "Biblioteca Digital — Website",
+      summary:
+        "Site inspirado em uma biblioteca com seções bem estruturadas e fácil navegação.",
+      problem:
+        "Criar uma interface organizada e coerente para uma página de biblioteca.",
       solution:
-        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+        "Estruturei um layout limpo com HTML e CSS e organizei cada seção para leitura confortável.",
       process:
-        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
-      stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
-      github: "https://github.com",
+        "Montei a estrutura, apliquei estilos modernos e adicionei pequenos scripts para melhorar a experiência de navegação.",
+      stack: ["HTML", "CSS", "JavaScript"],
+      github: "https://github.com/LuizHondo/web_project_library_pt",
     },
   },
   {
-    title: "Task Manager Dashboard",
-    summary: "A clean productivity dashboard with drag-and-drop task boards.",
-    stack: ["React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com",
+    title: "API Completa com Autenticação + Frontend React",
+    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471213913939906722/image.png?ex=698e1e3a&is=698cccba&hm=641c952a687a565a4bf82dc7e984772ff4e1b396ef584afa7396bbb8487bec65&.png",
+    summary:
+      "Projeto full-stack com API em Node.js/Express e frontend em React.",
+    stack: [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "React",
+      "Vite",
+      "JWT Authentication",
+    ],
+    github: "https://github.com/LuizHondo/web_project_api_full",
     caseStudy: {
-      title: "Task Manager Dashboard",
-      summary: "A clean productivity dashboard with drag-and-drop task boards.",
-      problem: "Existing tools were bloated and slow for small teams.",
+      title: "API Completa com Autenticação + Frontend React",
+      summary:
+        "Aplicação completa demonstrando autenticação, rotas protegidas e integração total com frontend.",
+      problem:
+        "Faltavam projetos que integrassem de verdade backend e frontend com usuários, autenticação e CRUDs completos.",
       solution:
-        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+        "Implementei uma API REST com JWT e integrei com um SPA React utilizando React Router e chamadas à API.",
       process:
-        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
-      stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
-      github: "https://github.com",
+        "Modelei a API com Express + Mongoose, desenvolvi rotas protegidas e then construí o frontend em React com gerenciamento de estado simples.",
+      stack: ["Express", "MongoDB", "React", "Vite", "JWT", "Jest + Supertest"],
+      github: "https://github.com/LuizHondo/web_project_api_full",
     },
   },
   {
-    title: "Task Manager Dashboard",
-    summary: "A clean productivity dashboard with drag-and-drop task boards.",
-    stack: ["React", "TypeScript", "Tailwind CSS"],
-    github: "https://github.com",
+    title: "Site de Landing Page Homeland",
+    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471214745968447679/image.png?ex=698e1f01&is=698ccd81&hm=ea909d30fffbf22b760fac61faad2a0b2f784975759e5b75408de8be3a727aac&.png",
+    summary:
+      "Projeto front-end focado em layout, responsividade e estética moderna.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/LuizHondo/web_project_homeland",
     caseStudy: {
-      title: "Task Manager Dashboard",
-      summary: "A clean productivity dashboard with drag-and-drop task boards.",
-      problem: "Existing tools were bloated and slow for small teams.",
+      title: "Landing Page Homeland",
+      summary:
+        "Página web desenvolvida para prática de layout responsivo e design limpo.",
+      problem:
+        "Criar uma landing page visualmente moderna, acessível e responsiva.",
       solution:
-        "Built a lightweight Kanban board with real-time sync and keyboard navigation.",
+        "Usei HTML semântico, CSS moderno e práticas de layout com flexbox e grid.",
       process:
-        "Prototyped in Figma, implemented with React DnD, tested with Vitest.",
-      stack: ["React", "TypeScript", "Tailwind CSS", "React DnD", "Supabase"],
-      github: "https://github.com",
+        "Estruturei o conteúdo, criei a hierarquia visual e testei variações de layout em diferentes dispositivos.",
+      stack: ["HTML", "CSS", "JavaScript"],
+      github: "https://github.com/LuizHondo/web_project_homeland",
+    },
+  },
+  {
+    title: "Site CoffeeShop",
+    summary:
+      "Site temático estilo cafeteria com foco em UI agradável e organização visual.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471216678380507370/image.png?ex=698e20ce&is=698ccf4e&hm=f1daec16698a05a113b8fdd9010b725ed5a95ea8496e8d2d04ee41a92157afb4&.png",
+    github: "https://github.com/LuizHondo/web_project_coffeeshop",
+    caseStudy: {
+      title: "CoffeeShop Website",
+      summary:
+        "Página temática criada para treinar estruturação visual e experiência do usuário.",
+      problem:
+        "Praticar layouts temáticos e interface amigável usando HTML e CSS.",
+      solution:
+        "Desenvolvi um site com seções bem definidas, estilo inspirado em cafeterias e visual consistente.",
+      process:
+        "Planejei o layout, estilizei com CSS e adicionei interatividade leve usando JavaScript.",
+      stack: ["HTML", "CSS", "JavaScript"],
+      github: "https://github.com/LuizHondo/web_project_coffeeshop",
     },
   },
 ];
@@ -140,7 +172,7 @@ const Projects = () => {
               plugins={[
                 Autoplay({
                   delay: 1000,
-                  stopOnMouseEnter: false,
+                  stopOnMouseEnter: true,
                   stopOnInteraction: true,
                 }),
               ]}
@@ -152,10 +184,11 @@ const Projects = () => {
                     className="sm:basis-1/2 h-full"
                   >
                     <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg hover:-translate-y-1 mt-10 sm:m-0">
-                        <div className="flex h-[40vh] sm:h-[30vh] items-center justify-center bg-muted">
-                          <FolderOpen className="h-10 w-10 text-muted-foreground/50" />
-                        </div>
+                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-[55vh] hover:-translate-y-1 mt-10 sm:m-0">
+                        <img
+                          className="flex h-[40vh] sm:h-[30vh] items-center justify-center bg-muted object-cover"
+                          src={p.url}
+                        />
                         <div className="flex flex-1 flex-col p-5">
                           <h3 className="text-body font-semibold text-foreground mb-1">
                             {p.title}
@@ -180,15 +213,10 @@ const Projects = () => {
                               variant="default"
                               onClick={() => setSelected(p.caseStudy)}
                             >
-                              View Case Study
+                              Ver detalhes
                             </Button>
                             <Button size="sm" variant="ghost" asChild>
-                              <a
-                                href={p.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="GitHub"
-                              >
+                              <a href={p.github} aria-label="GitHub">
                                 <ExternalLink className="h-4 w-4" />
                               </a>
                             </Button>

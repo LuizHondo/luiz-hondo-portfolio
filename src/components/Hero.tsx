@@ -39,10 +39,10 @@ const Hero = () => (
         className="mt-8 flex flex-wrap items-center justify-center gap-4"
       >
         <Button size="lg" asChild>
-          <a href="#projects">View Projects</a>
+          <a href="#projects">Meus projetos</a>
         </Button>
         <Button size="lg" variant="outline" asChild>
-          <a href="#contact">Contact Me</a>
+          <a href="#contact">Fale comigo</a>
         </Button>
       </motion.div>
       <motion.div

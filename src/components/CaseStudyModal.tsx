@@ -39,7 +39,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
         <div className="space-y-6 pt-2">
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Problem
+              Problema
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.problem}
@@ -47,7 +47,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Solution
+              Solução
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.solution}
@@ -55,7 +55,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Process
+              Processo
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.process}
@@ -63,7 +63,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Tech Stack
+              Tecnologias utilizadas
             </h4>
             <div className="flex flex-wrap gap-2">
               {study.stack.map((t) => (

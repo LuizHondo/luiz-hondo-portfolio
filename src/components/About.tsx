@@ -40,12 +40,16 @@ const About = () => (
       <div className="grid gap-12 md:grid-cols-[1fr_2fr]">
         <ScrollReveal delay={0.1}>
           <div className="flex flex-col items-center gap-4">
-            <div className="flex h-40 w-40 items-center justify-center rounded-2xl bg-muted">
-              <User className="h-16 w-16 text-muted-foreground" />
+            <div className="flex h-40 w-40 items-center justify-center rounded-2xl ">
+              <img
+                src="public\myPicture.png"
+                alt=""
+                className="flex h-40 w-40 items-center justify-center rounded-2xl bg-primary border border-solid p-1 "
+              />
             </div>
             <Button variant="outline" className="gap-2 mt-2">
               <Download className="h-4 w-4" />
-              Download CV
+              Baixar CV
             </Button>
           </div>
         </ScrollReveal>
