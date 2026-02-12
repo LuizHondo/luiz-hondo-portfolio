@@ -155,11 +155,11 @@ const Projects = () => {
     >
       <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
         <ScrollReveal>
-          <h2 className="text-heading text-foreground mb-2">Projects</h2>
+          <h2 className="text-heading text-foreground mb-2">Projetos</h2>
           <div className="h-1 w-12 rounded-full bg-primary mb-10" />
         </ScrollReveal>
         <ScrollReveal>
-          <div className="flex h-full sm:min-h-[60vh] min-h-[70vh] items-center ">
+          <div className="flex h-full sm:min-h-[65vh] min-h-[70vh] items-center ">
             <Carousel
               opts={{
                 align: "center",

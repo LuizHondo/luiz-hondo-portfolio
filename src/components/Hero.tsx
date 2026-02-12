@@ -36,7 +36,7 @@ const Hero = () => (
       <StaggeredText
         text="Transformando problemas reais em soluções|que entregam valor de verdade."
         separator="|"
-        className="mt-6 text-body-lg text-muted-foreground max-w-xl mx-auto"
+        className="mt-6 text-xs sm:text-body-lg text-muted-foreground max-w-xl mx-auto"
         segmentBy="chars"
         direction="top"
         delay={40}
