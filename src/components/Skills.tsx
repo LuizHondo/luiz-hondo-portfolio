@@ -7,7 +7,6 @@ import {
   FileCode,
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
-import CustomCursor from "./ui/customcursor";
 
 const categories = [
   {

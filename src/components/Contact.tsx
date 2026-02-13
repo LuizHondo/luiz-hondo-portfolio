@@ -35,14 +35,15 @@ const Contact = () => {
       // TODO: wire to Supabase Edge Function + Resend
       console.log("Contact form submitted:", data);
       toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        title: "Mensagem enviada!",
+        description: "Obrigado por enviar. Estarei respondendo em breve!",
       });
       reset();
     } catch {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
+        title: "Opa!",
+        description:
+          "Alguma coisa deu errado. Espere um pouco e tente novamente",
         variant: "destructive",
       });
     } finally {
@@ -99,10 +100,12 @@ const Contact = () => {
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="space-y-5 sm:space-y-2"
+            action="https://submit-form.com/N6xs1nHHV"
           >
             <div>
               <Label htmlFor="name">Nome</Label>
               <Input
+                name="name"
                 id="Nome"
                 placeholder="Seu nome"
                 {...register("name")}
@@ -117,6 +120,7 @@ const Contact = () => {
             <div>
               <Label htmlFor="email">Email</Label>
               <Input
+                name="email"
                 id="email"
                 type="email"
                 placeholder="Seu melhor email"
