@@ -27,7 +27,7 @@ interface Project {
 const projects: Project[] = [
   {
     title: "Lista de Compras Mobile",
-    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471209834824208405/image.png?ex=698e1a6e&is=698cc8ee&hm=7399c61e44d96cfd19a4985ae52f0255e2010c7f4dd93cf4fc1a0eeb74965c00&",
+    url: "https://i.postimg.cc/P5vgLVxd/shop_list.png",
     summary:
       "Aplicativo de lista de compras simples construído com React Native e Expo.",
     stack: ["React Native", "Expo", "TypeScript", "AsyncStorage"],
@@ -54,7 +54,7 @@ const projects: Project[] = [
   },
   {
     title: "Site de Biblioteca Digital",
-    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471213402754908364/image.png?ex=698e1dc1&is=698ccc41&hm=a9d7ad22e3e9e93b20782695709a922cada9268be4cb369713ab09fcc95e818d&.png",
+    url: "https://i.postimg.cc/pL5w9cTV/triple_peaks.png",
     summary:
       "Interface web inspirada em catálogo de biblioteca, com foco em layout e organização.",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -75,7 +75,7 @@ const projects: Project[] = [
   },
   {
     title: "API Completa com Autenticação + Frontend React",
-    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471213913939906722/image.png?ex=698e1e3a&is=698cccba&hm=641c952a687a565a4bf82dc7e984772ff4e1b396ef584afa7396bbb8487bec65&.png",
+    url: "https://i.postimg.cc/JzHfyYnm/around_us.png",
     summary:
       "Projeto full-stack com API em Node.js/Express e frontend em React.",
     stack: [
@@ -103,7 +103,7 @@ const projects: Project[] = [
   },
   {
     title: "Site de Landing Page Homeland",
-    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471214745968447679/image.png?ex=698e1f01&is=698ccd81&hm=ea909d30fffbf22b760fac61faad2a0b2f784975759e5b75408de8be3a727aac&.png",
+    url: "https://i.postimg.cc/dVZb7N1s/tripleten_gallery.png",
     summary:
       "Projeto front-end focado em layout, responsividade e estética moderna.",
     stack: ["HTML", "CSS", "JavaScript"],
@@ -127,7 +127,7 @@ const projects: Project[] = [
     summary:
       "Site temático estilo cafeteria com foco em UI agradável e organização visual.",
     stack: ["HTML", "CSS", "JavaScript"],
-    url: "https://cdn.discordapp.com/attachments/1398168651005427914/1471216678380507370/image.png?ex=698e20ce&is=698ccf4e&hm=f1daec16698a05a113b8fdd9010b725ed5a95ea8496e8d2d04ee41a92157afb4&.png",
+    url: "https://i.postimg.cc/4xHDK2dJ/coffeshop.png",
     github: "https://github.com/LuizHondo/web_project_coffeeshop",
     caseStudy: {
       title: "CoffeeShop Website",
@@ -189,6 +189,9 @@ const Projects = () => {
                           className="flex h-[50%] sm:h-[30vh] min-h-35
                            items-center justify-center bg-muted object-cover"
                           src={p.url}
+                          alt={`Preview do projeto: ${p.title}`}
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="flex flex-1 flex-col p-5 min-h-20">
                           <h3 className="text-body font-semibold text-foreground b-1">

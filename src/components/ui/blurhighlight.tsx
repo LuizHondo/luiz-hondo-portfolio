@@ -294,6 +294,8 @@ export const BlurHighlight = React.forwardRef<
             const highlightStyles: React.CSSProperties = {
               backgroundImage: `linear-gradient(${highlightColor}, ${highlightColor})`,
               backgroundRepeat: "no-repeat",
+              padding: 1,
+              borderRadius: "5px",
               backgroundPosition: metrics.position,
               backgroundSize: highlightInView
                 ? metrics.animated

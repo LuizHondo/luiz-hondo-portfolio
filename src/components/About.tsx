@@ -1,4 +1,4 @@
-﻿import { Download, User } from "lucide-react";
+﻿import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "./ScrollReveal";
 import BlurHighlight from "./ui/blurhighlight";
@@ -19,8 +19,12 @@ const About = () => (
           <div className="flex flex-row sm:flex-col items-center gap-4">
             <div className="flex w-20 h-20 sm:h-[12rem] sm:w-[12rem] items-center justify-center rounded-2xl ">
               <img
-                src="public\myPicture.png"
+                src="https://i.postimg.cc/FKMyRbpv/my-Picture.png"
                 alt="Imagem de Luiz"
+                loading="lazy"
+                decoding="async"
+                width={192}
+                height={192}
                 className="flex w-full items-center justify-center rounded-2xl bg-primary border border-solid p-1 "
               />
             </div>
@@ -36,6 +40,7 @@ const About = () => (
  text-justify h-fit"
         >
           <BlurHighlight
+            fitty
             highlightedBits={[
               "transformar desafios reais em soluções digitais claras, eficientes e sustentáveis",
               "resolve problemas concretos e facilita decisões",
