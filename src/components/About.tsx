@@ -40,7 +40,6 @@ const About = () => (
  text-justify h-fit"
         >
           <BlurHighlight
-            fitty
             highlightedBits={[
               "transformar desafios reais em soluções digitais claras, eficientes e sustentáveis",
               "resolve problemas concretos e facilita decisões",

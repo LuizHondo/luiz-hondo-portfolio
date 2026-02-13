@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
-  { label: "Quem sou eu", href: "#about" },
-  { label: "Habilidades", href: "#skills" },
+  { label: "Sobre mim", href: "#about" },
   { label: "Projetos", href: "#projects" },
+  // { label: "Processo", href: "#skills" },
   { label: "Contato", href: "#contact" },
 ];
 
@@ -17,16 +17,16 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <a href="#" className="text-heading-sm font-bold text-foreground">
-          Luiz<span className="text-primary">.</span>
+          Hondo<span className="text-primary">.</span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center mx-2 gap-8 md:flex">
           {navLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-body-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-body-sm text-nowrap text-muted-foreground transition-colors hover:text-foreground"
             >
               {l.label}
             </a>

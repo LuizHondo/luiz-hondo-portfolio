@@ -7,6 +7,7 @@ import {
   FileCode,
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import CustomCursor from "./ui/customcursor";
 
 const categories = [
   {
@@ -43,7 +44,9 @@ const Skills = () => (
   >
     <div className="container max-w-4xl">
       <ScrollReveal>
-        <h2 className="text-heading text-foreground mb-2">Skills</h2>
+        <h2 className="text-heading text-foreground mb-2 text-nowrap skills__title">
+          Processo de criação
+        </h2>
         <div className="h-1 w-12 rounded-full bg-primary mb-10" />
       </ScrollReveal>
 

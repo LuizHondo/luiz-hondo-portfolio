@@ -60,14 +60,14 @@ const Contact = () => {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-heading text-foreground mb-4 sm:mb-2">
-                Resolva seus problemas já!
+                Vamos conversar?
               </h2>
               <div className="h-1 w-12 rounded-full bg-primary mb-3" />
             </div>
             <ScrollReveal delay={0.2}>
               <div className=" flex items-center gap-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/luizpaulohondo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
@@ -76,7 +76,7 @@ const Contact = () => {
                   <Instagram className="h-5 w-5" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/luizhondo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
@@ -101,9 +101,9 @@ const Contact = () => {
             className="space-y-5 sm:space-y-2"
           >
             <div>
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Nome</Label>
               <Input
-                id="name"
+                id="Nome"
                 placeholder="Seu nome"
                 {...register("name")}
                 className="mt-1.5"
@@ -130,7 +130,7 @@ const Contact = () => {
               )}
             </div>
             <div>
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="message">Mensagem</Label>
               <Textarea
                 id="message"
                 placeholder="Eu estou com a idéia de fazer um..."

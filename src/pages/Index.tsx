@@ -12,8 +12,8 @@ const Index = () => (
     <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
       <Hero />
       <About />
-      <Skills />
       <Projects />
+      {/* <Skills /> */}
       <Contact />
       <Footer />
     </main>
