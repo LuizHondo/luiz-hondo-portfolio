@@ -19,14 +19,14 @@ const Footer = () => {
         </p>
         <div className="flex items-center gap-3">
           <a
-            href="mailto:hello@luizhondo.dev"
+            href="mailto:luiz.hondo@hotmail.com"
             aria-label="Email"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <Mail className="h-5 w-5" />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/luizpaulohondo"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -35,7 +35,7 @@ const Footer = () => {
             <Instagram className="h-5 w-5" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/luizhondo"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
