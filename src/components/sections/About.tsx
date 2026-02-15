@@ -1,7 +1,7 @@
 ﻿import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ScrollReveal from "./ScrollReveal";
-import BlurHighlight from "./ui/blurhighlight";
+import ScrollReveal from "../common/ScrollReveal";
+import BlurHighlight from "../ui/blurhighlight";
 
 const About = () => (
   <section

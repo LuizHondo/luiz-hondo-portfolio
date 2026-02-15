@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import ScrollReveal from "./ScrollReveal";
+import ScrollReveal from "../common/ScrollReveal";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),

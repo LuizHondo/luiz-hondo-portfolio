@@ -1,7 +1,14 @@
+import { motion } from "framer-motion";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => (
-  <footer className="border-t border-border py-10">
+  <motion.footer
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.3 }}
+    className="border-t border-border py-10 snap-end"
+  >
     <div className="container flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
       <p className="text-body-sm text-muted-foreground">
         © {new Date().getFullYear()} Luiz Hondo. All rights reserved.
@@ -34,7 +41,7 @@ const Footer = () => (
         </a>
       </div>
     </div>
-  </footer>
+  </motion.footer>
 );
 
 export default Footer;

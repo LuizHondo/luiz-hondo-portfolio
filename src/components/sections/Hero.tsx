@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import StaggeredText from "./ui/StaggeredText";
+import StaggeredText from "../ui/StaggeredText";
 
 const Hero = () => (
   <section className="flex min-h-screen snap-center items-center justify-center px-4 pt-16">

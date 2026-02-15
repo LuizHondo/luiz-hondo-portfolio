@@ -6,7 +6,7 @@ import {
   Smartphone,
   FileCode,
 } from "lucide-react";
-import ScrollReveal from "./ScrollReveal";
+import ScrollReveal from "../common/ScrollReveal";
 
 const categories = [
   {

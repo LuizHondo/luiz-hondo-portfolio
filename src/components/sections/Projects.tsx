@@ -2,8 +2,8 @@ import { useState } from "react";
 import { ExternalLink, FolderOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import ScrollReveal from "./ScrollReveal";
-import CaseStudyModal, { type CaseStudy } from "./CaseStudyModal";
+import ScrollReveal from "../common/ScrollReveal";
+import CaseStudyModal, { type CaseStudy } from "../modals/CaseStudyModal";
 import {
   Carousel,
   CarouselContent,

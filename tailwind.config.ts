@@ -19,9 +19,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-      },
       fontSize: {
         display: [
           "3.5rem",
