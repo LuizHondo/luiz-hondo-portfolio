@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Utilidades from "./pages/Utilidades";
+import Utilities from "./pages/Utilities";
 import VerticalVideoConverter from "./pages/VerticalVideoConverter";
 import NotFound from "./pages/NotFound";
 
@@ -18,9 +18,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/utilidades" element={<Utilidades />} />
+          <Route path="/utilities" element={<Utilities />} />
           <Route
-            path="/utilidades/video-converter"
+            path="/utilities/video-converter"
             element={<VerticalVideoConverter />}
           />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

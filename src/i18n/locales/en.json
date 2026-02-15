@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "about": "About me",
+    "projects": "Projects",
+    "utilities": "Utilities",
+    "contact": "Contact"
+  },
+  "header": {
+    "cta": "Solve your problems",
+    "videoConverter": "Video Converter"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Luiz Hondo",
+    "title": "Fullstack Developer",
+    "tagline": "Turning real problems into solutions|that deliver true value.",
+    "projectsBtn": "My projects",
+    "contactBtn": "Get in touch"
+  },
+  "about": {
+    "heading": "About me",
+    "imageAlt": "Picture of Luiz",
+    "downloadCV": "Download CV",
+    "bio": "I'm a front-end developer with a degree in Systems Analysis, focused on turning real challenges into clear, efficient, and sustainable digital solutions. Throughout my career, I've learned that technology only creates value when it solves concrete problems and facilitates decisions. That's why I work with discipline, organization, and critical thinking, always seeking to understand the context before proposing any solution. I use tools like React, React Native, and TypeScript strategically — not just to build modern interfaces, but to structure scalable, well-planned, and long-term reliable applications. I believe trust is built through consistency, attention to detail, and commitment to deliveries that truly work. My goal is to develop solutions that make sense today and remain solid tomorrow.",
+    "highlights": [
+      "turning real challenges into clear, efficient, and sustainable digital solutions",
+      "solves concrete problems and facilitates decisions",
+      "long-term reliable",
+      "attention to detail and commitment to deliveries",
+      "remain solid tomorrow"
+    ]
+  },
+  "projects": {
+    "heading": "Projects",
+    "viewDetails": "View details",
+    "previewAlt": "Project preview: {{title}}",
+    "items": [
+      {
+        "title": "Mobile Shopping List",
+        "summary": "A simple shopping list app built with React Native and Expo.",
+        "caseStudy": {
+          "title": "Mobile Shopping List",
+          "summary": "A mobile shopping list with local persistence and status filters.",
+          "problem": "Many people need a quick and lightweight way to manage shopping lists on their phone.",
+          "solution": "I built an app with pending/completed item filters and local storage using AsyncStorage.",
+          "process": "I designed the interface with a focus on simple UX, using Expo and TypeScript to develop screens, logic, and persistence."
+        }
+      },
+      {
+        "title": "Digital Library Website",
+        "summary": "A web interface inspired by a library catalog, focusing on layout and organization.",
+        "caseStudy": {
+          "title": "Digital Library — Website",
+          "summary": "A library-inspired website with well-structured sections and easy navigation.",
+          "problem": "Create an organized and coherent interface for a library page.",
+          "solution": "I structured a clean layout with HTML and CSS and organized each section for comfortable reading.",
+          "process": "I built the structure, applied modern styles, and added small scripts to improve the browsing experience."
+        }
+      },
+      {
+        "title": "Full API with Authentication + React Frontend",
+        "summary": "Full-stack project with a Node.js/Express API and React frontend.",
+        "caseStudy": {
+          "title": "Full API with Authentication + React Frontend",
+          "summary": "A complete application demonstrating authentication, protected routes, and full frontend integration.",
+          "problem": "There was a lack of projects that truly integrated backend and frontend with users, authentication, and full CRUDs.",
+          "solution": "I implemented a REST API with JWT and integrated it with a React SPA using React Router and API calls.",
+          "process": "I modeled the API with Express + Mongoose, developed protected routes, and then built the React frontend with simple state management."
+        }
+      },
+      {
+        "title": "Homeland Landing Page",
+        "summary": "A front-end project focused on layout, responsiveness, and modern aesthetics.",
+        "caseStudy": {
+          "title": "Homeland Landing Page",
+          "summary": "A web page developed for responsive layout practice and clean design.",
+          "problem": "Create a visually modern, accessible, and responsive landing page.",
+          "solution": "I used semantic HTML, modern CSS, and layout practices with flexbox and grid.",
+          "process": "I structured the content, created the visual hierarchy, and tested layout variations across different devices."
+        }
+      },
+      {
+        "title": "CoffeeShop Website",
+        "summary": "A coffee shop themed website focused on pleasant UI and visual organization.",
+        "caseStudy": {
+          "title": "CoffeeShop Website",
+          "summary": "A themed page created to practice visual structuring and user experience.",
+          "problem": "Practice themed layouts and user-friendly interfaces using HTML and CSS.",
+          "solution": "I developed a website with well-defined sections, coffee shop-inspired styling, and consistent visuals.",
+          "process": "I planned the layout, styled it with CSS, and added light interactivity using JavaScript."
+        }
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Let's talk?",
+    "description": "Help me help you! Do you have a problem or task and need to find a solution? An application? A system? A website that's uniquely yours? Send me a message with no strings attached and let's work on it together.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your best email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "I have an idea to build a...",
+    "submit": "Send",
+    "submitting": "Sending...",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Please enter a valid email",
+      "messageMin": "Message must be at least 10 characters"
+    },
+    "toast": {
+      "successTitle": "Message sent!",
+      "successDescription": "Thank you for reaching out. I'll get back to you soon!",
+      "errorTitle": "Oops!",
+      "errorDescription": "Something went wrong. Please wait a moment and try again"
+    }
+  },
+  "caseStudy": {
+    "problem": "Problem",
+    "solution": "Solution",
+    "process": "Process",
+    "technologies": "Technologies used",
+    "viewOnGithub": "View on GitHub"
+  },
+  "utilities": {
+    "heading": "Utilities",
+    "description": "Tools and resources to make your work easier.",
+    "breadcrumb": "Utilities",
+    "videoConverter": {
+      "title": "Vertical Video Converter",
+      "description": "Convert your videos to vertical format (9:16) perfect for social media.",
+      "pageTitle": "Vertical Video Converter",
+      "pageDescription": "Convert your videos to vertical format (1080x1920, 9:16 ratio) with custom captions.",
+      "pagePrivacy": "All processing happens in your browser — your videos never leave your device.",
+      "breadcrumb": "Video Converter"
+    }
+  },
+  "videoConverter": {
+    "loadingFFmpeg": "Loading FFmpeg.wasm...",
+    "failedToLoad": "Failed to load FFmpeg",
+    "sharedArrayBufferError": "SharedArrayBuffer is not available. The server needs to be restarted to apply cross-origin isolation headers.",
+    "cdnError": "Could not load FFmpeg.wasm via CDN. Check your internet connection or the browser console for details.",
+    "sharedArrayBuffer": "SharedArrayBuffer",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "crossOriginIsolated": "Cross-Origin Isolated",
+    "yes": "Yes",
+    "no": "No",
+    "reloadPage": "Reload Page",
+    "processing": "Processing...",
+    "processAll": "Process All ({{count}})",
+    "dropActive": "Drop your videos here",
+    "dropInactive": "Drag and drop videos or click to select",
+    "supportedFormats": "Supports MP4, MOV, AVI, MKV, WebM",
+    "videoQueue": "Video Queue ({{count}})",
+    "download": "Download",
+    "captionPlaceholder": "Add caption (optional)",
+    "processingProgress": "Processing... {{progress}}%",
+    "largeFile": "(Large file — may take longer)",
+    "emptyState": "No videos added. Drag and drop or click above to get started.",
+    "statusPending": "Pending",
+    "statusProcessing": "Processing",
+    "statusCompleted": "Completed",
+    "statusError": "Error",
+    "unknownError": "Unknown error",
+    "fontFetchFailed": "Failed to fetch font: HTTP {{status}}",
+    "fontEmpty": "Font file is empty",
+    "fontLoadFailed": "Failed to load font",
+    "captionFontLoading": "Caption font is still loading. Please wait and try again."
+  },
+  "footer": {
+    "copyright": "© {{year}} Luiz Hondo. All rights reserved."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  }
+}

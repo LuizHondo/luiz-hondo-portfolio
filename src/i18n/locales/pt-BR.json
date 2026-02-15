@@ -1,0 +1,179 @@
+{
+  "nav": {
+    "about": "Sobre mim",
+    "projects": "Projetos",
+    "utilities": "Utilidades",
+    "contact": "Contato"
+  },
+  "header": {
+    "cta": "Solucione seus problemas",
+    "videoConverter": "Conversor de Vídeo"
+  },
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "name": "Luiz Hondo",
+    "title": "Desenvolvedor Fullstack",
+    "tagline": "Transformando problemas reais em soluções|que entregam valor de verdade.",
+    "projectsBtn": "Meus projetos",
+    "contactBtn": "Fale comigo"
+  },
+  "about": {
+    "heading": "Sobre mim",
+    "imageAlt": "Imagem de Luiz",
+    "downloadCV": "Baixar CV",
+    "bio": "Sou desenvolvedor front-end com formação em Análise de Sistemas e foco em transformar desafios reais em soluções digitais claras, eficientes e sustentáveis. Ao longo da minha trajetória, aprendi que tecnologia só gera valor quando resolve problemas concretos e facilita decisões. Por isso, trabalho com disciplina, organização e pensamento crítico, buscando sempre entender o contexto antes de propor qualquer solução. Utilizo ferramentas como React, React Native e TypeScript de forma estratégica, não apenas para construir interfaces modernas, mas para estruturar aplicações escaláveis, bem planejadas e confiáveis no longo prazo. Acredito que confiança se constrói com consistência, atenção aos detalhes e compromisso com entregas que realmente funcionam. Meu objetivo é desenvolver soluções que façam sentido hoje e permaneçam sólidas amanhã.",
+    "highlights": [
+      "transformar desafios reais em soluções digitais claras, eficientes e sustentáveis",
+      "resolve problemas concretos e facilita decisões",
+      "confiáveis no longo prazo",
+      "atenção aos detalhes e compromisso com entregas",
+      "permaneçam sólidas amanhã"
+    ]
+  },
+  "projects": {
+    "heading": "Projetos",
+    "viewDetails": "Ver detalhes",
+    "previewAlt": "Preview do projeto: {{title}}",
+    "items": [
+      {
+        "title": "Lista de Compras Mobile",
+        "summary": "Aplicativo de lista de compras simples construído com React Native e Expo.",
+        "caseStudy": {
+          "title": "Lista de Compras Mobile",
+          "summary": "Uma lista de compras móvel com persistência local e filtros de status.",
+          "problem": "Muitas pessoas precisam de um jeito rápido e leve de gerenciar listas de compras no celular.",
+          "solution": "Desenvolvi um app com filtros de itens pendentes/concluídos e armazenamento local usando AsyncStorage.",
+          "process": "Projetei a interface com foco em UX simples, usando Expo e TypeScript para desenvolver telas, lógica e persistência."
+        }
+      },
+      {
+        "title": "Site de Biblioteca Digital",
+        "summary": "Interface web inspirada em catálogo de biblioteca, com foco em layout e organização.",
+        "caseStudy": {
+          "title": "Biblioteca Digital — Website",
+          "summary": "Site inspirado em uma biblioteca com seções bem estruturadas e fácil navegação.",
+          "problem": "Criar uma interface organizada e coerente para uma página de biblioteca.",
+          "solution": "Estruturei um layout limpo com HTML e CSS e organizei cada seção para leitura confortável.",
+          "process": "Montei a estrutura, apliquei estilos modernos e adicionei pequenos scripts para melhorar a experiência de navegação."
+        }
+      },
+      {
+        "title": "API Completa com Autenticação + Frontend React",
+        "summary": "Projeto full-stack com API em Node.js/Express e frontend em React.",
+        "caseStudy": {
+          "title": "API Completa com Autenticação + Frontend React",
+          "summary": "Aplicação completa demonstrando autenticação, rotas protegidas e integração total com frontend.",
+          "problem": "Faltavam projetos que integrassem de verdade backend e frontend com usuários, autenticação e CRUDs completos.",
+          "solution": "Implementei uma API REST com JWT e integrei com um SPA React utilizando React Router e chamadas à API.",
+          "process": "Modelei a API com Express + Mongoose, desenvolvi rotas protegidas e then construí o frontend em React com gerenciamento de estado simples."
+        }
+      },
+      {
+        "title": "Site de Landing Page Homeland",
+        "summary": "Projeto front-end focado em layout, responsividade e estética moderna.",
+        "caseStudy": {
+          "title": "Landing Page Homeland",
+          "summary": "Página web desenvolvida para prática de layout responsivo e design limpo.",
+          "problem": "Criar uma landing page visualmente moderna, acessível e responsiva.",
+          "solution": "Usei HTML semântico, CSS moderno e práticas de layout com flexbox e grid.",
+          "process": "Estruturei o conteúdo, criei a hierarquia visual e testei variações de layout em diferentes dispositivos."
+        }
+      },
+      {
+        "title": "Site CoffeeShop",
+        "summary": "Site temático estilo cafeteria com foco em UI agradável e organização visual.",
+        "caseStudy": {
+          "title": "CoffeeShop Website",
+          "summary": "Página temática criada para treinar estruturação visual e experiência do usuário.",
+          "problem": "Praticar layouts temáticos e interface amigável usando HTML e CSS.",
+          "solution": "Desenvolvi um site com seções bem definidas, estilo inspirado em cafeterias e visual consistente.",
+          "process": "Planejei o layout, estilizei com CSS e adicionei interatividade leve usando JavaScript."
+        }
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Vamos conversar?",
+    "description": "Me ajude a te ajudar! Tem algum problema ou tarefa e precisa encontrar uma solução? Uma aplicação? Um sistema? Um site só seu com a sua cara? Me mande uma mensagem sem compromisso e vamos trabalhar juntos nisso.",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Seu nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Seu melhor email",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Eu estou com a ideia de fazer um...",
+    "submit": "Enviar",
+    "submitting": "Enviando...",
+    "validation": {
+      "nameMin": "Nome deve ter pelo menos 2 caracteres",
+      "emailInvalid": "Por favor, insira um email válido",
+      "messageMin": "Mensagem deve ter pelo menos 10 caracteres"
+    },
+    "toast": {
+      "successTitle": "Mensagem enviada!",
+      "successDescription": "Obrigado por enviar. Estarei respondendo em breve!",
+      "errorTitle": "Opa!",
+      "errorDescription": "Alguma coisa deu errado. Espere um pouco e tente novamente"
+    }
+  },
+  "caseStudy": {
+    "problem": "Problema",
+    "solution": "Solução",
+    "process": "Processo",
+    "technologies": "Tecnologias utilizadas",
+    "viewOnGithub": "Ver no GitHub"
+  },
+  "utilities": {
+    "heading": "Utilidades",
+    "description": "Ferramentas e recursos para facilitar seu trabalho.",
+    "breadcrumb": "Utilidades",
+    "videoConverter": {
+      "title": "Conversor de Vídeo Vertical",
+      "description": "Converta seus vídeos para o formato vertical (9:16) perfeito para redes sociais.",
+      "pageTitle": "Conversor de Vídeo Vertical",
+      "pageDescription": "Converta seus vídeos para o formato vertical (1080x1920, proporção 9:16) com legendas personalizadas.",
+      "pagePrivacy": "Todo o processamento acontece no seu navegador — seus vídeos nunca saem do seu dispositivo.",
+      "breadcrumb": "Conversor de Vídeo"
+    }
+  },
+  "videoConverter": {
+    "loadingFFmpeg": "Carregando FFmpeg.wasm...",
+    "failedToLoad": "Falha ao carregar FFmpeg",
+    "sharedArrayBufferError": "SharedArrayBuffer não está disponível. O servidor precisa ser reiniciado para aplicar os headers de isolamento cross-origin.",
+    "cdnError": "Não foi possível carregar o FFmpeg.wasm via CDN. Verifique sua conexão com a internet ou o console do navegador para detalhes.",
+    "sharedArrayBuffer": "SharedArrayBuffer",
+    "available": "Disponível",
+    "unavailable": "Indisponível",
+    "crossOriginIsolated": "Cross-Origin Isolated",
+    "yes": "Sim",
+    "no": "Não",
+    "reloadPage": "Recarregar Página",
+    "processing": "Processando...",
+    "processAll": "Processar Todos ({{count}})",
+    "dropActive": "Solte seus vídeos aqui",
+    "dropInactive": "Arraste e solte vídeos ou clique para selecionar",
+    "supportedFormats": "Suporta MP4, MOV, AVI, MKV, WebM",
+    "videoQueue": "Fila de Vídeos ({{count}})",
+    "download": "Baixar",
+    "captionPlaceholder": "Adicionar legenda (opcional)",
+    "processingProgress": "Processando... {{progress}}%",
+    "largeFile": "(Arquivo grande — pode demorar mais)",
+    "emptyState": "Nenhum vídeo adicionado. Arraste e solte ou clique acima para começar.",
+    "statusPending": "Pendente",
+    "statusProcessing": "Processando",
+    "statusCompleted": "Concluído",
+    "statusError": "Erro",
+    "unknownError": "Erro desconhecido",
+    "fontFetchFailed": "Falha ao buscar fonte: HTTP {{status}}",
+    "fontEmpty": "Arquivo de fonte está vazio",
+    "fontLoadFailed": "Falha ao carregar fonte",
+    "captionFontLoading": "A fonte da legenda ainda está carregando. Aguarde e tente novamente."
+  },
+  "footer": {
+    "copyright": "© {{year}} Luiz Hondo. Todos os direitos reservados."
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ops! Página não encontrada",
+    "returnHome": "Voltar para o início"
+  }
+}

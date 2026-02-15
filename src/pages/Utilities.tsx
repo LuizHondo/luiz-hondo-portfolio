@@ -1,28 +1,34 @@
-import UtilityHeader from "@/components/layout/UtilityHeader";
+import Header from "@/components/layout/Header";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Video } from "lucide-react";
 
-const Utilidades = () => {
+const Utilities = () => {
+  const { t } = useTranslation();
+
   const utilities = [
     {
-      title: "Conversor de Vídeo Vertical",
-      description: "Converta seus vídeos para o formato vertical (9:16) perfeito para redes sociais.",
-      href: "/utilidades/video-converter",
+      title: t("utilities.videoConverter.title"),
+      description: t("utilities.videoConverter.description"),
+      href: "/utilities/video-converter",
       icon: Video,
     },
   ];
 
   return (
     <>
-      <UtilityHeader />
+      <Header
+        variant="utility"
+        breadcrumbs={[{ label: t("utilities.breadcrumb"), href: "/utilities" }]}
+      />
       <main className="min-h-screen bg-background pt-24 pb-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-4 text-foreground">
-            Utilidades
+            {t("utilities.heading")}
           </h1>
           <p className="text-muted-foreground mb-8">
-            Ferramentas e recursos para facilitar seu trabalho.
+            {t("utilities.description")}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,4 +56,4 @@ const Utilidades = () => {
   );
 };
 
-export default Utilidades;
+export default Utilities;

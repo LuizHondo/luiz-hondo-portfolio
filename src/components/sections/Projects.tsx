@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { ExternalLink, FolderOpen } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ScrollReveal from "../common/ScrollReveal";
-import CaseStudyModal, { type CaseStudy } from "../modals/CaseStudyModal";
+import CaseStudyModal from "../modals/CaseStudyModal";
+import type { CaseStudy } from "../modals/CaseStudyModal";
+import { projectsData } from "@/data/projects";
 import {
   Carousel,
   CarouselContent,
@@ -14,139 +17,24 @@ import {
 
 import Autoplay from "embla-carousel-autoplay";
 
-interface Project {
-  title: string;
-  summary: string;
-  stack: string[];
-  github: string;
-  caseStudy: CaseStudy;
-  url: string;
-}
-// / transfer projects to a separated data file
-
-const projects: Project[] = [
-  {
-    title: "Lista de Compras Mobile",
-    url: "https://i.postimg.cc/P5vgLVxd/shop_list.png",
-    summary:
-      "Aplicativo de lista de compras simples construído com React Native e Expo.",
-    stack: ["React Native", "Expo", "TypeScript", "AsyncStorage"],
-    github: "https://github.com/LuizHondo/rn-comprar",
-    caseStudy: {
-      title: "Lista de Compras Mobile",
-      summary:
-        "Uma lista de compras móvel com persistência local e filtros de status.",
-      problem:
-        "Muitas pessoas precisam de um jeito rápido e leve de gerenciar listas de compras no celular.",
-      solution:
-        "Desenvolvi um app com filtros de itens pendentes/concluídos e armazenamento local usando AsyncStorage.",
-      process:
-        "Projetei a interface com foco em UX simples, usando Expo e TypeScript para desenvolver telas, lógica e persistência.",
-      stack: [
-        "React Native",
-        "Expo",
-        "TypeScript",
-        "AsyncStorage",
-        "lucide-react-native",
-      ],
-      github: "https://github.com/LuizHondo/rn-comprar",
-    },
-  },
-  {
-    title: "Site de Biblioteca Digital",
-    url: "https://i.postimg.cc/pL5w9cTV/triple_peaks.png",
-    summary:
-      "Interface web inspirada em catálogo de biblioteca, com foco em layout e organização.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/LuizHondo/web_project_library_pt",
-    caseStudy: {
-      title: "Biblioteca Digital — Website",
-      summary:
-        "Site inspirado em uma biblioteca com seções bem estruturadas e fácil navegação.",
-      problem:
-        "Criar uma interface organizada e coerente para uma página de biblioteca.",
-      solution:
-        "Estruturei um layout limpo com HTML e CSS e organizei cada seção para leitura confortável.",
-      process:
-        "Montei a estrutura, apliquei estilos modernos e adicionei pequenos scripts para melhorar a experiência de navegação.",
-      stack: ["HTML", "CSS", "JavaScript"],
-      github: "https://github.com/LuizHondo/web_project_library_pt",
-    },
-  },
-  {
-    title: "API Completa com Autenticação + Frontend React",
-    url: "https://i.postimg.cc/JzHfyYnm/around_us.png",
-    summary:
-      "Projeto full-stack com API em Node.js/Express e frontend em React.",
-    stack: [
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "React",
-      "Vite",
-      "JWT Authentication",
-    ],
-    github: "https://github.com/LuizHondo/web_project_api_full",
-    caseStudy: {
-      title: "API Completa com Autenticação + Frontend React",
-      summary:
-        "Aplicação completa demonstrando autenticação, rotas protegidas e integração total com frontend.",
-      problem:
-        "Faltavam projetos que integrassem de verdade backend e frontend com usuários, autenticação e CRUDs completos.",
-      solution:
-        "Implementei uma API REST com JWT e integrei com um SPA React utilizando React Router e chamadas à API.",
-      process:
-        "Modelei a API com Express + Mongoose, desenvolvi rotas protegidas e then construí o frontend em React com gerenciamento de estado simples.",
-      stack: ["Express", "MongoDB", "React", "Vite", "JWT", "Jest + Supertest"],
-      github: "https://github.com/LuizHondo/web_project_api_full",
-    },
-  },
-  {
-    title: "Site de Landing Page Homeland",
-    url: "https://i.postimg.cc/dVZb7N1s/tripleten_gallery.png",
-    summary:
-      "Projeto front-end focado em layout, responsividade e estética moderna.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/LuizHondo/web_project_homeland",
-    caseStudy: {
-      title: "Landing Page Homeland",
-      summary:
-        "Página web desenvolvida para prática de layout responsivo e design limpo.",
-      problem:
-        "Criar uma landing page visualmente moderna, acessível e responsiva.",
-      solution:
-        "Usei HTML semântico, CSS moderno e práticas de layout com flexbox e grid.",
-      process:
-        "Estruturei o conteúdo, criei a hierarquia visual e testei variações de layout em diferentes dispositivos.",
-      stack: ["HTML", "CSS", "JavaScript"],
-      github: "https://github.com/LuizHondo/web_project_homeland",
-    },
-  },
-  {
-    title: "Site CoffeeShop",
-    summary:
-      "Site temático estilo cafeteria com foco em UI agradável e organização visual.",
-    stack: ["HTML", "CSS", "JavaScript"],
-    url: "https://i.postimg.cc/4xHDK2dJ/coffeshop.png",
-    github: "https://github.com/LuizHondo/web_project_coffeeshop",
-    caseStudy: {
-      title: "CoffeeShop Website",
-      summary:
-        "Página temática criada para treinar estruturação visual e experiência do usuário.",
-      problem:
-        "Praticar layouts temáticos e interface amigável usando HTML e CSS.",
-      solution:
-        "Desenvolvi um site com seções bem definidas, estilo inspirado em cafeterias e visual consistente.",
-      process:
-        "Planejei o layout, estilizei com CSS e adicionei interatividade leve usando JavaScript.",
-      stack: ["HTML", "CSS", "JavaScript"],
-      github: "https://github.com/LuizHondo/web_project_coffeeshop",
-    },
-  },
-];
-
 const Projects = () => {
   const [selected, setSelected] = useState<CaseStudy | null>(null);
+  const { t } = useTranslation();
+
+  const projects = projectsData.map((p, i) => ({
+    ...p,
+    title: t(`projects.items.${i}.title`),
+    summary: t(`projects.items.${i}.summary`),
+    caseStudy: {
+      title: t(`projects.items.${i}.caseStudy.title`),
+      summary: t(`projects.items.${i}.caseStudy.summary`),
+      problem: t(`projects.items.${i}.caseStudy.problem`),
+      solution: t(`projects.items.${i}.caseStudy.solution`),
+      process: t(`projects.items.${i}.caseStudy.process`),
+      stack: p.caseStudyStack,
+      github: p.caseStudyGithub,
+    },
+  }));
 
   return (
     <section
@@ -155,7 +43,9 @@ const Projects = () => {
     >
       <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
         <ScrollReveal>
-          <h2 className="text-heading text-foreground mb-2">Projetos</h2>
+          <h2 className="text-heading text-foreground mb-2">
+            {t("projects.heading")}
+          </h2>
           <div className="h-1 w-12 rounded-full bg-primary mb-10" />
         </ScrollReveal>
         <ScrollReveal>
@@ -189,7 +79,7 @@ const Projects = () => {
                           className="flex h-[50%] sm:h-[30vh] min-h-35
                            items-center justify-center bg-muted object-cover"
                           src={p.url}
-                          alt={`Preview do projeto: ${p.title}`}
+                          alt={t("projects.previewAlt", { title: p.title })}
                           loading="lazy"
                           decoding="async"
                         />
@@ -201,13 +91,13 @@ const Projects = () => {
                             {p.summary}
                           </p>
                           <div className="flex flex-wrap gap-1.5 mb-4">
-                            {p.stack.map((t) => (
+                            {p.stack.map((tech) => (
                               <Badge
-                                key={t}
+                                key={tech}
                                 variant="outline"
                                 className="text-caption"
                               >
-                                {t}
+                                {tech}
                               </Badge>
                             ))}
                           </div>
@@ -217,7 +107,7 @@ const Projects = () => {
                               variant="default"
                               onClick={() => setSelected(p.caseStudy)}
                             >
-                              Ver detalhes
+                              {t("projects.viewDetails")}
                             </Button>
                             <Button size="sm" variant="ghost" asChild>
                               <a href={p.github} aria-label="GitHub">

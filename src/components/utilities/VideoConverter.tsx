@@ -3,6 +3,7 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile, toBlobURL } from "@ffmpeg/util";
 import { useDropzone } from "react-dropzone";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   Film,
   Download,
@@ -46,6 +47,7 @@ const VideoConverter = () => {
   const cancelRef = useRef(false);
   const fontLoadedRef = useRef(false);
   const isLoadingFontRef = useRef(false);
+  const { t } = useTranslation();
 
   // Initialize FFmpeg
   useEffect(() => {
@@ -63,14 +65,14 @@ const VideoConverter = () => {
     try {
       const response = await fetch(captionFontUrl);
       if (!response.ok) {
-        throw new Error(`Falha ao buscar fonte: HTTP ${response.status}`);
+        throw new Error(t("videoConverter.fontFetchFailed", { status: response.status }));
       }
 
       const fontBuffer = await response.arrayBuffer();
       const fontData = new Uint8Array(fontBuffer);
 
       if (fontData.byteLength === 0) {
-        throw new Error("Arquivo de fonte está vazio");
+        throw new Error(t("videoConverter.fontEmpty"));
       }
 
       await ffmpegRef.current.writeFile(CAPTION_FONT_FS_PATH, fontData);
@@ -79,7 +81,7 @@ const VideoConverter = () => {
     } catch (err) {
       fontLoadedRef.current = false;
       setCaptionFontError(
-        err instanceof Error ? err.message : "Falha ao carregar fonte",
+        err instanceof Error ? err.message : t("videoConverter.fontLoadFailed"),
       );
     } finally {
       isLoadingFontRef.current = false;
@@ -291,8 +293,7 @@ const VideoConverter = () => {
       if (video.caption.trim()) {
         if (!fontLoadedRef.current) {
           throw new Error(
-            captionFontError ??
-              "A fonte da legenda ainda está carregando. Aguarde e tente novamente.",
+            captionFontError ?? t("videoConverter.captionFontLoading"),
           );
         }
 
@@ -421,7 +422,7 @@ const VideoConverter = () => {
             ? {
                 ...v,
                 status: "error",
-                error: error instanceof Error ? error.message : "Erro desconhecido",
+                error: error instanceof Error ? error.message : t("videoConverter.unknownError"),
               }
             : v,
         ),
@@ -494,28 +495,28 @@ const VideoConverter = () => {
         return (
           <Badge variant="secondary" className="gap-1">
             <Clock className="h-3 w-3" />
-            Pendente
+            {t("videoConverter.statusPending")}
           </Badge>
         );
       case "processing":
         return (
           <Badge className="gap-1 bg-blue-500">
             <Loader2 className="h-3 w-3 animate-spin" />
-            Processando
+            {t("videoConverter.statusProcessing")}
           </Badge>
         );
       case "completed":
         return (
           <Badge variant="default" className="gap-1 bg-green-500">
             <CheckCircle2 className="h-3 w-3" />
-            Concluído
+            {t("videoConverter.statusCompleted")}
           </Badge>
         );
       case "error":
         return (
           <Badge variant="destructive" className="gap-1">
             <AlertCircle className="h-3 w-3" />
-            Erro
+            {t("videoConverter.statusError")}
           </Badge>
         );
     }
@@ -525,7 +526,9 @@ const VideoConverter = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] space-y-4">
         <Loader2 className="h-10 w-10 sm:h-12 sm:w-12 animate-spin text-primary" />
-        <p className="text-sm sm:text-base text-muted-foreground">Carregando FFmpeg.wasm...</p>
+        <p className="text-sm sm:text-base text-muted-foreground">
+          {t("videoConverter.loadingFFmpeg")}
+        </p>
       </div>
     );
   }
@@ -539,33 +542,31 @@ const VideoConverter = () => {
           <div className="flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] space-y-4 px-2">
             <AlertCircle className="h-10 w-10 sm:h-12 sm:w-12 text-destructive" />
             <div className="text-center space-y-2">
-              <p className="text-base sm:text-lg font-semibold">Falha ao carregar FFmpeg</p>
+              <p className="text-base sm:text-lg font-semibold">
+                {t("videoConverter.failedToLoad")}
+              </p>
               <p className="text-xs sm:text-sm text-muted-foreground max-w-md">
-                {!hasSharedArrayBuffer ? (
-                  <>
-                    SharedArrayBuffer não está disponível. O servidor precisa ser
-                    reiniciado para aplicar os headers de isolamento cross-origin.
-                  </>
-                ) : (
-                  <>
-                    Não foi possível carregar o FFmpeg.wasm via CDN. Verifique sua
-                    conexão com a internet ou o console do navegador para detalhes.
-                  </>
-                )}
+                {!hasSharedArrayBuffer
+                  ? t("videoConverter.sharedArrayBufferError")
+                  : t("videoConverter.cdnError")}
               </p>
               <div className="pt-4 space-y-2">
                 <p className="text-xs text-muted-foreground">
-                  SharedArrayBuffer:{" "}
-                  {hasSharedArrayBuffer ? "✓ Disponível" : "✗ Indisponível"}
+                  {t("videoConverter.sharedArrayBuffer")}:{" "}
+                  {hasSharedArrayBuffer
+                    ? `✓ ${t("videoConverter.available")}`
+                    : `✗ ${t("videoConverter.unavailable")}`}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Cross-Origin Isolated:{" "}
-                  {window.crossOriginIsolated ? "✓ Sim" : "✗ Não"}
+                  {t("videoConverter.crossOriginIsolated")}:{" "}
+                  {window.crossOriginIsolated
+                    ? `✓ ${t("videoConverter.yes")}`
+                    : `✗ ${t("videoConverter.no")}`}
                 </p>
               </div>
             </div>
             <Button onClick={() => window.location.reload()}>
-              Recarregar Página
+              {t("videoConverter.reloadPage")}
             </Button>
           </div>
         </CardContent>
@@ -587,12 +588,12 @@ const VideoConverter = () => {
           {isProcessing ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Processando...
+              {t("videoConverter.processing")}
             </>
           ) : (
             <>
               <Play className="h-4 w-4" />
-              Processar Todos ({pendingVideosCount})
+              {t("videoConverter.processAll", { count: pendingVideosCount })}
             </>
           )}
         </Button>
@@ -623,11 +624,11 @@ const VideoConverter = () => {
           </motion.div>
           <p className="text-base sm:text-lg font-medium mb-1 sm:mb-2">
             {isDragActive
-              ? "Solte seus vídeos aqui"
-              : "Arraste e solte vídeos ou clique para selecionar"}
+              ? t("videoConverter.dropActive")
+              : t("videoConverter.dropInactive")}
           </p>
           <p className="text-xs sm:text-sm text-muted-foreground">
-            Suporta MP4, MOV, AVI, MKV, WebM
+            {t("videoConverter.supportedFormats")}
           </p>
         </div>
       </div>
@@ -642,7 +643,7 @@ const VideoConverter = () => {
             className="space-y-3 sm:space-y-4"
           >
             <h3 className="text-base sm:text-lg font-semibold">
-              Fila de Vídeos ({videos.length})
+              {t("videoConverter.videoQueue", { count: videos.length })}
             </h3>
             {videos.map((video) => (
               <motion.div
@@ -683,7 +684,7 @@ const VideoConverter = () => {
                               {(video.file.size / 1024 / 1024).toFixed(2)} MB
                               {video.file.size > 100 * 1024 * 1024 && (
                                 <span className="text-yellow-500 ml-2">
-                                  (Arquivo grande — pode demorar mais)
+                                  {t("videoConverter.largeFile")}
                                 </span>
                               )}
                             </p>
@@ -697,7 +698,9 @@ const VideoConverter = () => {
                                   className="gap-1 sm:gap-2 text-xs sm:text-sm"
                                 >
                                   <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                                  <span className="hidden sm:inline">Baixar</span>
+                                  <span className="hidden sm:inline">
+                                    {t("videoConverter.download")}
+                                  </span>
                                 </Button>
                               )}
                             <Button
@@ -717,7 +720,7 @@ const VideoConverter = () => {
                         {/* Caption Input */}
                         <div>
                           <Input
-                            placeholder="Adicionar legenda (opcional)"
+                            placeholder={t("videoConverter.captionPlaceholder")}
                             value={video.caption}
                             onChange={(e) =>
                               updateCaption(video.id, e.target.value)
@@ -741,7 +744,7 @@ const VideoConverter = () => {
                           <div className="space-y-1 sm:space-y-2">
                             <Progress value={video.progress} className="h-2" />
                             <p className="text-xs sm:text-sm text-muted-foreground">
-                              Processando... {video.progress}%
+                              {t("videoConverter.processingProgress", { progress: video.progress })}
                             </p>
                           </div>
                         )}
@@ -772,7 +775,7 @@ const VideoConverter = () => {
         >
           <Film className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-3 sm:mb-4 opacity-50" />
           <p className="text-sm sm:text-base">
-            Nenhum vídeo adicionado. Arraste e solte ou clique acima para começar.
+            {t("videoConverter.emptyState")}
           </p>
         </motion.div>
       )}

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Instagram, Linkedin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,17 +11,22 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "../common/ScrollReveal";
 
-const schema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-});
-
-type FormData = z.infer<typeof schema>;
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  const schema = z.object({
+    name: z.string().min(2, t("contact.validation.nameMin")),
+    email: z.string().email(t("contact.validation.emailInvalid")),
+    message: z.string().min(10, t("contact.validation.messageMin")),
+  });
 
   const {
     register,
@@ -32,18 +38,16 @@ const Contact = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      // TODO: wire to Supabase Edge Function + Resend
       console.log("Contact form submitted:", data);
       toast({
-        title: "Mensagem enviada!",
-        description: "Obrigado por enviar. Estarei respondendo em breve!",
+        title: t("contact.toast.successTitle"),
+        description: t("contact.toast.successDescription"),
       });
       reset();
     } catch {
       toast({
-        title: "Opa!",
-        description:
-          "Alguma coisa deu errado. Espere um pouco e tente novamente",
+        title: t("contact.toast.errorTitle"),
+        description: t("contact.toast.errorDescription"),
         variant: "destructive",
       });
     } finally {
@@ -61,7 +65,7 @@ const Contact = () => {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-heading text-foreground mb-4 sm:mb-2">
-                Vamos conversar?
+                {t("contact.heading")}
               </h2>
               <div className="h-1 w-12 rounded-full bg-primary mb-3" />
             </div>
@@ -89,10 +93,7 @@ const Contact = () => {
             </ScrollReveal>
           </div>
           <p className="text-body text-muted-foreground mb-8 sm:mb-4 text-justify">
-            Me ajude a te ajudar! Tem algum problema ou tarefa e precisa
-            encontrar uma solução? Uma aplicação? Um sistema? Um site só seu com
-            a sua cara? Me mande uma mensagem sem compromisso e vamos trabalhar
-            juntos nisso.
+            {t("contact.description")}
           </p>
         </ScrollReveal>
 
@@ -103,11 +104,11 @@ const Contact = () => {
             action="https://submit-form.com/N6xs1nHHV"
           >
             <div>
-              <Label htmlFor="name">Nome</Label>
+              <Label htmlFor="name">{t("contact.nameLabel")}</Label>
               <Input
                 name="name"
-                id="Nome"
-                placeholder="Seu nome"
+                id="name"
+                placeholder={t("contact.namePlaceholder")}
                 {...register("name")}
                 className="mt-1.5"
               />
@@ -118,12 +119,12 @@ const Contact = () => {
               )}
             </div>
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("contact.emailLabel")}</Label>
               <Input
                 name="email"
                 id="email"
                 type="email"
-                placeholder="Seu melhor email"
+                placeholder={t("contact.emailPlaceholder")}
                 {...register("email")}
                 className="mt-1.5"
               />
@@ -134,10 +135,10 @@ const Contact = () => {
               )}
             </div>
             <div>
-              <Label htmlFor="message">Mensagem</Label>
+              <Label htmlFor="message">{t("contact.messageLabel")}</Label>
               <Textarea
                 id="message"
-                placeholder="Eu estou com a idéia de fazer um..."
+                placeholder={t("contact.messagePlaceholder")}
                 rows={4}
                 {...register("message")}
                 className="mt-1.5"
@@ -155,7 +156,7 @@ const Contact = () => {
               disabled={loading}
             >
               <Send className="h-4 w-4" />
-              {loading ? "Enviar..." : ""}
+              {loading ? t("contact.submitting") : t("contact.submit")}
             </Button>
           </form>
         </ScrollReveal>

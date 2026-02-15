@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +27,8 @@ interface Props {
 }
 
 const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
+  const { t } = useTranslation();
+
   if (!study) return null;
 
   return (
@@ -39,7 +42,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
         <div className="space-y-6 pt-2">
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Problema
+              {t("caseStudy.problem")}
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.problem}
@@ -47,7 +50,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Solução
+              {t("caseStudy.solution")}
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.solution}
@@ -55,7 +58,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Processo
+              {t("caseStudy.process")}
             </h4>
             <p className="text-body-sm text-muted-foreground">
               {study.process}
@@ -63,12 +66,12 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           </div>
           <div>
             <h4 className="text-body font-semibold text-foreground mb-1">
-              Tecnologias utilizadas
+              {t("caseStudy.technologies")}
             </h4>
             <div className="flex flex-wrap gap-2">
-              {study.stack.map((t) => (
-                <Badge key={t} variant="secondary">
-                  {t}
+              {study.stack.map((tech) => (
+                <Badge key={tech} variant="secondary">
+                  {tech}
                 </Badge>
               ))}
             </div>
@@ -76,7 +79,7 @@ const CaseStudyModal = ({ study, open, onOpenChange }: Props) => {
           <Button variant="outline" className="gap-2" asChild>
             <a href={study.github} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-4 w-4" />
-              View on GitHub
+              {t("caseStudy.viewOnGithub")}
             </a>
           </Button>
         </div>
