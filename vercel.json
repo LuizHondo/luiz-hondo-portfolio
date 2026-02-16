@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/utilities/video-converter",
       "headers": [
         {
           "key": "Cross-Origin-Opener-Policy",
