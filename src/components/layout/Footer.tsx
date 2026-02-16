@@ -26,7 +26,7 @@ const Footer = () => {
             <Mail className="h-5 w-5" />
           </a>
           <a
-            href="https://www.instagram.com/luizpaulohondo"
+            href="https://www.instagram.com/luiz.hondo"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
