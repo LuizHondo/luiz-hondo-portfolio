@@ -38,7 +38,19 @@ const Contact = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      console.log("Contact form submitted:", data);
+      const response = await fetch("https://submit-form.com/N6xs1nHHV", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
       toast({
         title: t("contact.toast.successTitle"),
         description: t("contact.toast.successDescription"),
