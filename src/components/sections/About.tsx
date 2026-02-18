@@ -5,7 +5,12 @@ import ScrollReveal from "../common/ScrollReveal";
 import BlurHighlight from "../effects/BlurHighlight";
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const cvUrl =
+    i18n.language === "pt"
+      ? "https://drive.google.com/uc?export=download&id=1u80a4l4nKqbjGnBpu4kI0RQ8JuU0vW6D"
+      : "https://drive.google.com/uc?export=download&id=1oRFtbmbvF_hOXmqBTSF-LszGbCggd5E4";
 
   return (
     <section
@@ -20,10 +25,10 @@ const About = () => {
           <div className="h-1 w-12 rounded-full bg-primary mb-2 sm:mb-8" />
         </ScrollReveal>
 
-        <div className="grid gap-2 sm:gap-8 min-h-0 sm:grid-cols-[1fr_2fr]">
+        <div className="grid gap-2 sm:gap-8 min-h-0 lg:grid-cols-[1fr_2fr]">
           <ScrollReveal delay={0.1}>
-            <div className="flex flex-row sm:flex-col items-center justify-around gap-3 sm:gap-4">
-              <div className="flex w-16 h-16 sm:h-[12rem] sm:w-[12rem] shrink-0 items-center justify-center rounded-2xl">
+            <div className="flex flex-row lg:flex-col  items-center justify-around gap-3 sm:gap-4">
+              <div className="flex w-16 h-16 sm:h-[12rem] sm:w-[12rem] items-center justify-center rounded-2xl">
                 <img
                   src="https://i.postimg.cc/FKMyRbpv/my-Picture.png"
                   alt={t("about.imageAlt")}
@@ -36,15 +41,23 @@ const About = () => {
               </div>
               <Button
                 variant="outline"
-                className="gap-2 flex flex-col  text-[0.6rem] sm:text-body-sm w-full"
+                className="gap-2 flex flex-col-reverse sm:flex-row text-[0.6rem] sm:text-body-sm
+                 w-fit h-fit"
+                asChild
               >
-                <Download className="h-2 w-2 sm:h-4 sm:w-4" />
-                {t("about.downloadCV")}
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="h-2 w-2 sm:h-4 sm:w-4" />
+                  {t("about.downloadCV")}
+                </a>
               </Button>
             </div>
           </ScrollReveal>
 
-          <div className="text-[0.6rem] sm:text-body-sm text-justify overflow-y-auto min-h-0 sm:leading-relaxed leading-tight w-fit nosc">
+          <div className="text-[0.6rem] sm:text-sm md:text-base md:text-body-sm text-justify overflow-y-auto min-h-0 sm:leading-relaxed leading-tight w-fit nosc">
             <BlurHighlight
               highlightedBits={
                 t("about.highlights", {

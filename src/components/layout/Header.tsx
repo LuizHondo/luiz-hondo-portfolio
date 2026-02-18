@@ -61,7 +61,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
 
         {/* Desktop nav — only for home variant */}
         {variant === "home" && (
-          <nav className="hidden items-center mx-2 gap-8 md:flex">
+          <nav className="hidden items-center mx-2 gap-8 lg:flex">
             {links.map((l) =>
               l.href.startsWith("#") ? (
                 <a
@@ -84,7 +84,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
           </nav>
         )}
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
           <Button asChild>
             <a href={ctaHref}>{t("header.cta")}</a>
@@ -92,7 +92,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
         </div>
 
         {/* Mobile toggle */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -111,7 +111,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <nav className="border-t border-border bg-background px-6 pb-6 pt-4 md:hidden">
+        <nav className="border-t border-border bg-background px-6 pb-6 pt-4 lg:hidden">
           <div className="flex flex-col gap-4">
             {links.map((l) =>
               l.href.startsWith("#") ? (
