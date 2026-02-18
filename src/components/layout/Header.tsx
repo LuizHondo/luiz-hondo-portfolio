@@ -34,7 +34,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
   const ctaHref = variant === "home" ? "#contact" : "/#contact";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md shadow-[0_4px_24px_0_rgba(0,0,0,0.1)]">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-4">
           <Link to="/" className="text-heading-sm font-bold text-foreground">
