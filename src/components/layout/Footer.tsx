@@ -11,10 +11,10 @@ const Footer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       viewport={{ once: true, amount: 0.3 }}
-      className="border-t border-border py-10 snap-end"
+      className="border-t border-border py-4 sm:py-6"
     >
       <div className="container flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-        <p className="text-body-sm text-muted-foreground">
+        <p className="text-caption sm:text-body-sm text-muted-foreground">
           {t("footer.copyright", { year: new Date().getFullYear() })}
         </p>
         <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ const Footer = () => {
             aria-label="Email"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Mail className="h-5 w-5" />
+            <Mail className="h-4 w-4" />
           </a>
           <a
             href="https://www.instagram.com/luiz.hondo"
@@ -32,7 +32,7 @@ const Footer = () => {
             aria-label="Instagram"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Instagram className="h-5 w-5" />
+            <Instagram className="h-4 w-4" />
           </a>
           <a
             href="https://www.linkedin.com/in/luizhondo"
@@ -41,7 +41,7 @@ const Footer = () => {
             aria-label="LinkedIn"
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Linkedin className="h-5 w-5" />
+            <Linkedin className="h-4 w-4" />
           </a>
         </div>
       </div>

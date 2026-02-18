@@ -27,8 +27,10 @@ const Index = () => {
         <Hero />
         <About />
         <Projects />
-        <Contact />
-        <Footer />
+        <div className="snap-start">
+          <Contact />
+          <Footer />
+        </div>
       </main>
     </>
   );

@@ -68,43 +68,40 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      className="pt-20 sm:pt-28 min-h-screen bg-muted/40 snap-center"
-    >
+    <section id="contact" className="pt-20 sm:pt-16 pb-6 bg-muted/40">
       <div className="container max-w-3xl">
         <ScrollReveal>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-2">
             <div>
-              <h2 className="text-heading text-foreground mb-4 sm:mb-2">
+              <h2 className="text-heading-sm sm:text-heading text-foreground mb-1">
                 {t("contact.heading")}
               </h2>
-              <div className="h-1 w-12 rounded-full bg-primary mb-3" />
+              <div className="h-1 w-12 rounded-full bg-primary" />
             </div>
             <ScrollReveal delay={0.2}>
-              <div className=" flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                 <a
                   href="https://www.instagram.com/luizpaulohondo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
+                  className="flex h-7 w-7 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
                   aria-label="Instagram"
                 >
-                  <Instagram className="h-5 w-5" />
+                  <Instagram className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/luizhondo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
+                  className="flex h-7 w-7 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:text-foreground hover:border-foreground"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-5 w-5" />
+                  <Linkedin className="h-3.5 w-3.5 sm:h-5 sm:w-5" />
                 </a>
               </div>
             </ScrollReveal>
           </div>
-          <p className="text-body text-muted-foreground mb-8 sm:mb-4 text-justify">
+          <p className="text-body-sm sm:text-body text-muted-foreground mb-3 sm:mb-4 text-justify leading-tight sm:leading-relaxed">
             {t("contact.description")}
           </p>
         </ScrollReveal>
@@ -112,7 +109,7 @@ const Contact = () => {
         <ScrollReveal delay={0.1}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="space-y-5 sm:space-y-2"
+            className="space-y-3 sm:space-y-2"
             action="https://submit-form.com/N6xs1nHHV"
           >
             <div>

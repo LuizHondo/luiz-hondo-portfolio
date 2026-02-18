@@ -10,20 +10,20 @@ const About = () => {
   return (
     <section
       id="about"
-      className="pt-20 sm:pt-28 snap-center h-full min-h-screen overflow-hidden"
+      className="pt-20 sm:pt-28 pb-6 sm:pb-10 snap-center h-screen overflow-hidden"
     >
-      <div className="container h-full max-w-4xl">
+      <div className="container h-fit max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
         <ScrollReveal>
-          <h2 className="text-heading text-foreground mb-2">
+          <h2 className="text-heading-sm sm:text-heading text-foreground mb-px">
             {t("about.heading")}
           </h2>
-          <div className="h-1 w-12 rounded-full bg-primary mb-8" />
+          <div className="h-1 w-12 rounded-full bg-primary mb-2 sm:mb-8" />
         </ScrollReveal>
 
-        <div className="grid gap-8 h-fit sm:grid-cols-[1fr_2fr]">
+        <div className="grid gap-2 sm:gap-8 min-h-0 sm:grid-cols-[1fr_2fr]">
           <ScrollReveal delay={0.1}>
-            <div className="flex flex-row sm:flex-col items-center gap-4">
-              <div className="flex w-20 h-20 sm:h-[12rem] sm:w-[12rem] items-center justify-center rounded-2xl ">
+            <div className="flex flex-row sm:flex-col items-center justify-around gap-3 sm:gap-4">
+              <div className="flex w-16 h-16 sm:h-[12rem] sm:w-[12rem] shrink-0 items-center justify-center rounded-2xl">
                 <img
                   src="https://i.postimg.cc/FKMyRbpv/my-Picture.png"
                   alt={t("about.imageAlt")}
@@ -31,31 +31,33 @@ const About = () => {
                   decoding="async"
                   width={192}
                   height={192}
-                  className="flex w-full items-center justify-center rounded-2xl bg-primary border border-solid p-1 "
+                  className="flex w-full items-center justify-center rounded-2xl bg-primary border border-solid p-1"
                 />
               </div>
-              <Button variant="outline" className="gap-2 mt-2">
-                <Download className="h-4 w-4" />
+              <Button
+                variant="outline"
+                className="gap-2 flex flex-col  text-[0.6rem] sm:text-body-sm w-full"
+              >
+                <Download className="h-2 w-2 sm:h-4 sm:w-4" />
                 {t("about.downloadCV")}
               </Button>
             </div>
           </ScrollReveal>
 
-          <div
-            className="text-[clamp(0.5rem,1.5vw,1.5rem)] sm:text-[clamp(1rem,30vw,1.2rem)]
- text-justify h-fit"
-          >
+          <div className="text-[0.6rem] sm:text-body-sm text-justify overflow-y-auto min-h-0 sm:leading-relaxed leading-tight w-fit nosc">
             <BlurHighlight
-              highlightedBits={t("about.highlights", {
-                returnObjects: true,
-              }) as string[]}
+              highlightedBits={
+                t("about.highlights", {
+                  returnObjects: true,
+                }) as string[]
+              }
               highlightColor="#2a7872"
               highlightDelay={0.6}
               highlightDuration={2}
               blurAmount={0}
               inactiveOpacity={1}
               blurDuration={0}
-              className="h-full overflow-hidden"
+              className="h-fit"
             >
               {t("about.bio")}
             </BlurHighlight>

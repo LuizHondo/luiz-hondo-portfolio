@@ -37,19 +37,16 @@ const Projects = () => {
   }));
 
   return (
-    <section
-      id="projects"
-      className="pt-20 sm:pt-28 pb-10 snap-center min-h-screen"
-    >
-      <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1">
+    <section id="projects" className="pt-20 sm:pt-28 pb-6 snap-center h-screen">
+      <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1 h-full">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">
             {t("projects.heading")}
           </h2>
-          <div className="h-1 w-12 rounded-full bg-primary mb-10" />
+          <div className="h-1 w-12 rounded-full bg-primary mb-6" />
         </ScrollReveal>
-        <ScrollReveal>
-          <div className="flex h-full sm:min-h-[65vh] min-h-[70vh] items-center ">
+        <ScrollReveal className="flex items-center">
+          <div className="flex w-full items-center">
             <Carousel
               opts={{
                 align: "center",
@@ -61,7 +58,7 @@ const Projects = () => {
               orientation="horizontal"
               plugins={[
                 Autoplay({
-                  delay: 1000,
+                  delay: 1700,
                   stopOnMouseEnter: true,
                   stopOnInteraction: true,
                 }),
@@ -74,37 +71,37 @@ const Projects = () => {
                     className="sm:basis-1/2 h-full"
                   >
                     <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-[55vh] min-h-40 hover:-translate-y-1 mt-10 sm:m-0">
+                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-[calc(100vh-13rem)] sm:h-[calc(100vh-15rem)] hover:-translate-y-1">
                         <img
-                          className="flex h-[50%] sm:h-[30vh] min-h-35
-                           items-center justify-center bg-muted object-cover"
+                          className="h-[45%] w-full bg-muted object-cover"
                           src={p.url}
                           alt={t("projects.previewAlt", { title: p.title })}
                           loading="lazy"
                           decoding="async"
                         />
-                        <div className="flex flex-1 flex-col p-5 min-h-20">
-                          <h3 className="text-body font-semibold text-foreground b-1">
+                        <div className="flex flex-1 flex-col p-3 sm:p-5 min-h-0 overflow-hidden">
+                          <h3 className="text-body-sm sm:text-body font-semibold text-foreground mb-0.5 sm:mb-1">
                             {p.title}
                           </h3>
-                          <p className="text-body-sm text-muted-foreground mb-4 flex-1">
+                          <p className="text-caption sm:text-body-sm text-muted-foreground mb-2 sm:mb-4 flex-1 line-clamp-3">
                             {p.summary}
                           </p>
-                          <div className="flex flex-wrap gap-1.5 mb-4">
+                          <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-4">
                             {p.stack.map((tech) => (
                               <Badge
                                 key={tech}
                                 variant="outline"
-                                className="text-caption"
+                                className="text-[0.625rem] sm:text-caption px-1.5 py-0 sm:px-2.5 sm:py-0.5"
                               >
                                 {tech}
                               </Badge>
                             ))}
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 mt-auto">
                             <Button
                               size="sm"
                               variant="default"
+                              className="text-caption sm:text-body-sm"
                               onClick={() => setSelected(p.caseStudy)}
                             >
                               {t("projects.viewDetails")}
