@@ -1,5 +1,7 @@
+"use client";
+
 import Header from "@/components/layout/Header";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Video } from "lucide-react";
@@ -33,7 +35,7 @@ const Utilities = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {utilities.map((utility) => (
-              <Link key={utility.href} to={utility.href}>
+              <Link key={utility.href} href={utility.href}>
                 <Card className="h-full hover:border-primary transition-colors cursor-pointer">
                   <CardHeader>
                     <div className="flex items-start gap-4">

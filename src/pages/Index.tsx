@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
@@ -9,16 +10,16 @@ import Footer from "@/components/layout/Footer";
 
 const Index = () => {
   const mainRef = useRef<HTMLElement>(null);
-  const { hash } = useLocation();
 
   useEffect(() => {
+    const hash = window.location.hash;
     if (hash) {
       const target = document.querySelector(hash);
       if (target && mainRef.current) {
         target.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }, [hash]);
+  }, []);
 
   return (
     <>

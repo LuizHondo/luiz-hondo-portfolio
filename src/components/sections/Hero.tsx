@@ -1,15 +1,23 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
 import StaggeredText from "../effects/StaggeredText";
-import NeonReveal from "../effects/NeonReveal";
+
+const NeonReveal = dynamic(() => import("../effects/NeonReveal"), {
+  ssr: false,
+});
 
 const Hero = () => {
   const { t } = useTranslation();
   const [isDark, setIsDark] = useState(() =>
-    document.documentElement.classList.contains("dark"),
+    typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : true,
   );
 
   useEffect(() => {

@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/layout/Header";
 import { useTranslation } from "react-i18next";
 import VideoConverter from "@/components/utilities/VideoConverter";

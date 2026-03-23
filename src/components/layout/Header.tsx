@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "../common/ThemeToggle";
@@ -37,7 +39,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md shadow-[0_4px_24px_0_rgba(0,0,0,0.1)]">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link to="/" className="text-heading-sm font-bold text-foreground">
+          <Link href="/" className="text-heading-sm font-bold text-foreground">
             Hondo<span className="text-primary">.</span>
           </Link>
           {breadcrumbs.map((crumb, i) => (
@@ -45,7 +47,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
               <span className="text-muted-foreground">/</span>
               {i < breadcrumbs.length - 1 ? (
                 <Link
-                  to={crumb.href}
+                  href={crumb.href}
                   className="text-heading-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {crumb.label}
@@ -74,7 +76,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
               ) : (
                 <Link
                   key={l.href}
-                  to={l.href}
+                  href={l.href}
                   className="text-body-sm text-nowrap text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {l.label}
@@ -126,7 +128,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
               ) : (
                 <Link
                   key={l.href}
-                  to={l.href}
+                  href={l.href}
                   onClick={() => setMobileOpen(false)}
                   className="text-body text-muted-foreground transition-colors hover:text-foreground"
                 >
