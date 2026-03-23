@@ -17,6 +17,14 @@ interface HeaderProps {
   breadcrumbs?: Breadcrumb[];
 }
 
+const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const target = document.querySelector(href);
+  if (target) {
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useTranslation();
@@ -69,6 +77,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
                 <a
                   key={l.href}
                   href={l.href}
+                  onClick={(e) => handleHashClick(e, l.href)}
                   className="text-body-sm text-nowrap text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {l.label}
@@ -89,7 +98,7 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
         <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
           <Button asChild>
-            <a href={ctaHref}>{t("header.cta")}</a>
+            <a href={ctaHref} onClick={(e) => ctaHref.startsWith("#") && handleHashClick(e, ctaHref)}>{t("header.cta")}</a>
           </Button>
         </div>
 
@@ -120,7 +129,10 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    handleHashClick(e, l.href);
+                    setMobileOpen(false);
+                  }}
                   className="text-body text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {l.label}
@@ -137,7 +149,10 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
               ),
             )}
             <Button asChild className="mt-2 w-full">
-              <a href={ctaHref} onClick={() => setMobileOpen(false)}>
+              <a href={ctaHref} onClick={(e) => {
+                if (ctaHref.startsWith("#")) handleHashClick(e, ctaHref);
+                setMobileOpen(false);
+              }}>
                 {t("header.cta")}
               </a>
             </Button>
