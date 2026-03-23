@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import captionFontUrl from "@/assets/fonts/site-caption-font.ttf?url";
+const captionFontUrl = "/fonts/site-caption-font.ttf";
 
 // Video interface
 interface Video {
