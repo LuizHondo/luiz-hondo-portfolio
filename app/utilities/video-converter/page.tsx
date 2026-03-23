@@ -1,7 +1,9 @@
+"use client";
+
 import dynamic from "next/dynamic";
 
 const VerticalVideoConverter = dynamic(
-  () => import("@/pages/VerticalVideoConverter"),
+  () => import("@/views/VerticalVideoConverter"),
   { ssr: false }
 );
 
