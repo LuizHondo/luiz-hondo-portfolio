@@ -62,6 +62,57 @@ export interface BlurHighlightRef {
   reset: () => void;
 }
 
+const HighlightWrapper = ({
+  children,
+  highlightColor,
+  highlightClassName,
+  metrics,
+  highlightTransition,
+}: {
+  children: React.ReactNode;
+  highlightColor: string;
+  highlightClassName?: string;
+  metrics: { initial: string; animated: string; position: string };
+  highlightTransition: Transition;
+}) => {
+  const highlightRef = useRef<HTMLSpanElement>(null);
+  const highlightInView = useInView(highlightRef, {
+    once: false,
+    initial: false,
+    amount: 0.1,
+  });
+
+  const highlightStyles: React.CSSProperties = {
+    backgroundImage: `linear-gradient(${highlightColor}, ${highlightColor})`,
+    backgroundRepeat: "no-repeat",
+    padding: 1,
+    borderRadius: "5px",
+    backgroundPosition: metrics.position,
+    boxDecorationBreak: "clone",
+    WebkitBoxDecorationBreak: "clone",
+  };
+
+  return (
+    <span ref={highlightRef} className="inline">
+      <motion.span
+        className={cn("inline", highlightClassName)}
+        style={highlightStyles}
+        animate={{
+          backgroundSize: highlightInView
+            ? metrics.animated
+            : metrics.initial,
+        }}
+        initial={{
+          backgroundSize: metrics.initial,
+        }}
+        transition={highlightTransition}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+};
+
 /**
  * BlurHighlight - Animated paragraph with blur-in effect and automatic text highlighting
  *
@@ -279,53 +330,17 @@ export const BlurHighlight = React.forwardRef<
             return <React.Fragment key={index}>{part.text}</React.Fragment>;
           }
 
-          const HighlightWrapper = ({
-            children,
-          }: {
-            children: React.ReactNode;
-          }) => {
-            const highlightRef = useRef<HTMLSpanElement>(null);
-            const highlightInView = useInView(highlightRef, {
-              once: false,
-              initial: false,
-              amount: 0.1,
-            });
-
-            const highlightStyles: React.CSSProperties = {
-              backgroundImage: `linear-gradient(${highlightColor}, ${highlightColor})`,
-              backgroundRepeat: "no-repeat",
-              padding: 1,
-              borderRadius: "5px",
-              backgroundPosition: metrics.position,
-              backgroundSize: highlightInView
-                ? metrics.animated
-                : metrics.initial,
-              boxDecorationBreak: "clone",
-              WebkitBoxDecorationBreak: "clone",
-            };
-
-            return (
-              <span ref={highlightRef} className="inline">
-                <motion.span
-                  className={cn("inline", highlightClassName)}
-                  style={highlightStyles}
-                  animate={{
-                    backgroundSize: highlightInView
-                      ? metrics.animated
-                      : metrics.initial,
-                  }}
-                  initial={{
-                    backgroundSize: metrics.initial,
-                  }}
-                  transition={highlightTransition}
-                >
-                  {children}
-                </motion.span>
-              </span>
-            );
-          };
-
-          return <HighlightWrapper key={index}>{part.text}</HighlightWrapper>;
+          return (
+            <HighlightWrapper
+              key={index}
+              highlightColor={highlightColor}
+              highlightClassName={highlightClassName}
+              metrics={metrics}
+              highlightTransition={highlightTransition}
+            >
+              {part.text}
+            </HighlightWrapper>
+          );
         })}
       </motion.div>
     );
