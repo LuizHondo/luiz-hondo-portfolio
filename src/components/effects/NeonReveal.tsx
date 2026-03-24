@@ -262,6 +262,13 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
   const mousePositionRef = useRef({ x: 0, y: 0 });
   const mouseAlphaRef = useRef(0);
   const [isInView, setIsInView] = useState(!animateOnScroll);
+  const isInViewRef = useRef(isInView);
+  const onStartRef = useRef(onStart);
+  const onCompleteRef = useRef(onComplete);
+
+  isInViewRef.current = isInView;
+  onStartRef.current = onStart;
+  onCompleteRef.current = onComplete;
 
   const hslToRgb = (h: number, s: number, l: number) => {
     h = h / 360;
@@ -402,13 +409,13 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
       const elapsed = (now - start) / 1000;
       uniforms.iTime.value = elapsed;
 
-      if (isInView) {
+      if (isInViewRef.current) {
         const timeSinceStart = now - start;
         if (timeSinceStart < delayMs) {
           uniforms.uProgress.value = 0;
           if (!hasStartedRef.current) {
             hasStartedRef.current = true;
-            onStart?.();
+            onStartRef.current?.();
           }
         } else {
           const progress = Math.min(
@@ -420,7 +427,7 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
 
           if (progress >= 1.0 && !hasCompletedRef.current) {
             hasCompletedRef.current = true;
-            onComplete?.();
+            onCompleteRef.current?.();
           }
         }
       }
@@ -472,12 +479,9 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
     barHeight,
     mirrored,
     expandFrom,
-    isInView,
     intensity,
     glowSpread,
     followCursor,
-    onStart,
-    onComplete,
   ]);
 
   useEffect(() => {
