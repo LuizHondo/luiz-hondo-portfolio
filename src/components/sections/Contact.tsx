@@ -70,8 +70,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="pt-20 sm:pt-16 pb-6 bg-muted/40">
-      <div className="container max-w-3xl">
+    <section id="contact" className="min-h-screen snap-start bg-muted/40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16">
         <ScrollReveal>
           <div className="flex items-center justify-between mb-2">
             <div>
@@ -103,7 +103,7 @@ const Contact = () => {
               </div>
             </ScrollReveal>
           </div>
-          <p className="text-body-sm sm:text-body text-muted-foreground mb-3 sm:mb-4 text-justify leading-tight sm:leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4 text-justify leading-snug sm:leading-relaxed">
             {t("contact.description")}
           </p>
         </ScrollReveal>

@@ -15,7 +15,7 @@ const Footer = () => {
       viewport={{ once: true, amount: 0.3 }}
       className="border-t border-border py-4 sm:py-6"
     >
-      <div className="container flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-caption sm:text-body-sm text-muted-foreground">
           {t("footer.copyright", { year: new Date().getFullYear() })}
         </p>

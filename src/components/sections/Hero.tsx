@@ -32,7 +32,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen snap-center items-center justify-center px-4 pt-16">
+    <section className="relative flex min-h-screen snap-start items-center justify-center pt-16">
       <div className="absolute inset-0 z-0">
         <NeonReveal
           key={isDark ? "dark" : "light"}
@@ -47,7 +47,8 @@ const Hero = () => {
           followCursor={true}
         />
       </div>
-      <div className="container relative z-10 max-w-3xl text-center pointer-events-none">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="max-w-3xl mx-auto text-center pointer-events-none">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,7 +70,7 @@ const Hero = () => {
         <StaggeredText
           text={t("hero.tagline")}
           separator="|"
-          className="mt-6 text-xs sm:text-body-lg text-muted-foreground max-w-xl mx-auto"
+          className="mt-6 text-sm sm:text-body-lg text-muted-foreground max-w-xl mx-auto leading-snug sm:leading-relaxed"
           segmentBy="chars"
           direction="top"
           delay={40}
@@ -101,6 +102,7 @@ const Hero = () => {
             <ArrowDown className="mx-auto h-10 w-10 animate-bounce text-teal-300" />
           </a>
         </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -39,8 +39,8 @@ const Projects = () => {
   }));
 
   return (
-    <section id="projects" className="pt-20 sm:pt-28 pb-6 snap-center h-screen">
-      <div className="container max-w-4xl grid grid-rows-[auto,1fr] grid-cols-1 h-full">
+    <section id="projects" className="h-screen min-h-screen snap-start">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16 grid grid-rows-[auto,1fr] grid-cols-1 h-full">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">
             {t("projects.heading")}
@@ -70,10 +70,10 @@ const Projects = () => {
                 {projects.map((p, i) => (
                   <CarouselItem
                     key={`${p.title}-${i}`}
-                    className="sm:basis-1/2 h-full"
+                    className="basis-full sm:basis-1/2"
                   >
                     <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-[calc(100vh-13rem)] sm:h-[calc(100vh-15rem)] hover:-translate-y-1">
+                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-full hover:-translate-y-1">
                         <img
                           className="h-[45%] w-full bg-muted object-cover"
                           src={p.url}
@@ -85,7 +85,7 @@ const Projects = () => {
                           <h3 className="text-body-sm sm:text-body font-semibold text-foreground mb-0.5 sm:mb-1">
                             {p.title}
                           </h3>
-                          <p className="text-caption sm:text-body-sm text-muted-foreground mb-2 sm:mb-4 flex-1 line-clamp-3">
+                          <p className="text-sm sm:text-base text-muted-foreground mb-2 sm:mb-4 flex-1 line-clamp-3 leading-snug sm:leading-relaxed">
                             {p.summary}
                           </p>
                           <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-4">
@@ -93,7 +93,7 @@ const Projects = () => {
                               <Badge
                                 key={tech}
                                 variant="outline"
-                                className="text-[0.625rem] sm:text-caption px-1.5 py-0 sm:px-2.5 sm:py-0.5"
+                                className="text-xs sm:text-caption px-1.5 py-0 sm:px-2.5 sm:py-0.5"
                               >
                                 {tech}
                               </Badge>
