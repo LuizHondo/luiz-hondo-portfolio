@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { ExternalLink } from "lucide-react";
+import { useState, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import ScrollReveal from "../common/ScrollReveal";
-import CaseStudyModal from "../modals/CaseStudyModal";
-import type { CaseStudy } from "../modals/CaseStudyModal";
+import ProjectShaderCard from "../cards/ProjectShaderCard";
+import ProjectModal from "../modals/ProjectModal";
+import type { SelectedProject } from "../modals/ProjectModal";
 import { projectsData } from "@/data/projects";
 import {
   Carousel,
@@ -15,16 +13,21 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 import Autoplay from "embla-carousel-autoplay";
 
 const Projects = () => {
-  const [selected, setSelected] = useState<CaseStudy | null>(null);
+  const [selected, setSelected] = useState<SelectedProject | null>(null);
+  const [placeholderSize, setPlaceholderSize] = useState<{ width: number; height: number } | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const { t } = useTranslation();
 
   const projects = projectsData.map((p, i) => ({
     ...p,
+    id: String(i),
     title: t(`projects.items.${i}.title`),
     summary: t(`projects.items.${i}.summary`),
     caseStudy: {
@@ -38,17 +41,48 @@ const Projects = () => {
     },
   }));
 
+  const handleCardClick = (index: number) => {
+    const p = projects[index];
+    const el = cardRefs.current[p.id];
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      setPlaceholderSize({ width: rect.width, height: rect.height });
+    }
+    setSelected({
+      id: p.id,
+      data: projectsData[index],
+      title: p.title,
+      caseStudy: p.caseStudy,
+    });
+    // Freeze carousel autoplay
+    try {
+      (api?.plugins() as { autoplay?: { stop: () => void } })?.autoplay?.stop();
+    } catch {
+      // autoplay plugin may not be available
+    }
+  };
+
+  const handleClose = useCallback(() => {
+    setSelected(null);
+    // Resume carousel autoplay
+    try {
+      (api?.plugins() as { autoplay?: { play: () => void } })?.autoplay?.play();
+    } catch {
+      // autoplay plugin may not be available
+    }
+  }, [api]);
+
   return (
-    <section id="projects" className="h-screen min-h-screen snap-start">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16 grid grid-rows-[auto,1fr] grid-cols-1 h-full">
+    <section id="projects" className="min-h-screen snap-start flex flex-col">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col flex-1 justify-center gap-8 sm:gap-10 lg:gap-14">
         <ScrollReveal>
           <h2 className="text-heading text-foreground mb-2">
             {t("projects.heading")}
           </h2>
           <div className="h-1 w-12 rounded-full bg-primary mb-6" />
         </ScrollReveal>
-        <ScrollReveal className="flex items-center">
-          <div className="flex w-full items-center">
+        <ScrollReveal className="flex items-center h-full min-h-0">
+          <div className="flex w-full items-center h-full">
             <Carousel
               opts={{
                 align: "center",
@@ -56,8 +90,9 @@ const Projects = () => {
                 slidesToScroll: 1,
                 dragFree: true,
               }}
-              className="w-full"
+              className="w-full h-full"
               orientation="horizontal"
+              setApi={setApi}
               plugins={[
                 Autoplay({
                   delay: 1700,
@@ -66,56 +101,35 @@ const Projects = () => {
                 }),
               ]}
             >
-              <CarouselContent>
+              <CarouselContent className="h-full">
                 {projects.map((p, i) => (
                   <CarouselItem
-                    key={`${p.title}-${i}`}
+                    key={`${p.id}-${i}`}
                     className="basis-full sm:basis-1/2"
                   >
-                    <ScrollReveal delay={0.06}>
-                      <div className="group flex flex-col rounded-xl border border-border bg-card overflow-hidden transition-all hover:shadow-lg h-full hover:-translate-y-1">
-                        <img
-                          className="h-[45%] w-full bg-muted object-cover"
-                          src={p.url}
-                          alt={t("projects.previewAlt", { title: p.title })}
-                          loading="lazy"
-                          decoding="async"
+                    <ScrollReveal delay={0.06} className="h-full">
+                      {selected?.id === p.id ? (
+                        // Hidden placeholder to preserve carousel layout
+                        <div
+                          className="rounded-xl"
+                          style={{
+                            visibility: "hidden",
+                            width: placeholderSize?.width,
+                            height: placeholderSize?.height,
+                          }}
                         />
-                        <div className="flex flex-1 flex-col p-3 sm:p-5 min-h-0 overflow-hidden">
-                          <h3 className="text-body-sm sm:text-body font-semibold text-foreground mb-0.5 sm:mb-1">
-                            {p.title}
-                          </h3>
-                          <p className="text-sm sm:text-base text-muted-foreground mb-2 sm:mb-4 flex-1 line-clamp-3 leading-snug sm:leading-relaxed">
-                            {p.summary}
-                          </p>
-                          <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-2 sm:mb-4">
-                            {p.stack.map((tech) => (
-                              <Badge
-                                key={tech}
-                                variant="outline"
-                                className="text-xs sm:text-caption px-1.5 py-0 sm:px-2.5 sm:py-0.5"
-                              >
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                          <div className="flex items-center gap-2 mt-auto">
-                            <Button
-                              size="sm"
-                              variant="default"
-                              className="text-caption sm:text-body-sm"
-                              onClick={() => setSelected(p.caseStudy)}
-                            >
-                              {t("projects.viewDetails")}
-                            </Button>
-                            <Button size="sm" variant="ghost" asChild>
-                              <a href={p.github} aria-label="GitHub">
-                                <ExternalLink className="h-4 w-4" />
-                              </a>
-                            </Button>
-                          </div>
+                      ) : (
+                        <div ref={(el) => { cardRefs.current[p.id] = el; }} className="h-full flex items-center">
+                          <ProjectShaderCard
+                            id={p.id}
+                            title={p.title}
+                            summary={p.summary}
+                            stack={p.stack}
+                            shaderColor={p.shaderColor}
+                            onClick={() => handleCardClick(i)}
+                          />
                         </div>
-                      </div>
+                      )}
                     </ScrollReveal>
                   </CarouselItem>
                 ))}
@@ -127,11 +141,7 @@ const Projects = () => {
         </ScrollReveal>
       </div>
 
-      <CaseStudyModal
-        study={selected}
-        open={!!selected}
-        onOpenChange={(o) => !o && setSelected(null)}
-      />
+      <ProjectModal project={selected} onClose={handleClose} />
     </section>
   );
 };

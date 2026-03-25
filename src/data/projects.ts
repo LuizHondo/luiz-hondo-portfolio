@@ -4,6 +4,7 @@ export interface ProjectData {
   github: string;
   caseStudyStack: string[];
   caseStudyGithub: string;
+  shaderColor: string;
 }
 
 export const projectsData: ProjectData[] = [
@@ -19,6 +20,7 @@ export const projectsData: ProjectData[] = [
       "lucide-react-native",
     ],
     caseStudyGithub: "https://github.com/LuizHondo/rn-comprar",
+    shaderColor: "#5227FF",
   },
   {
     url: "https://i.postimg.cc/pL5w9cTV/triple_peaks.png",
@@ -26,6 +28,7 @@ export const projectsData: ProjectData[] = [
     github: "https://github.com/LuizHondo/web_project_library_pt",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
     caseStudyGithub: "https://github.com/LuizHondo/web_project_library_pt",
+    shaderColor: "#FF6B35",
   },
   {
     url: "https://i.postimg.cc/JzHfyYnm/around_us.png",
@@ -40,6 +43,7 @@ export const projectsData: ProjectData[] = [
     github: "https://github.com/LuizHondo/web_project_api_full",
     caseStudyStack: ["Express", "MongoDB", "React", "Vite", "JWT", "Jest + Supertest"],
     caseStudyGithub: "https://github.com/LuizHondo/web_project_api_full",
+    shaderColor: "#00B4D8",
   },
   {
     url: "https://i.postimg.cc/dVZb7N1s/tripleten_gallery.png",
@@ -47,6 +51,7 @@ export const projectsData: ProjectData[] = [
     github: "https://github.com/LuizHondo/web_project_homeland",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
     caseStudyGithub: "https://github.com/LuizHondo/web_project_homeland",
+    shaderColor: "#10B981",
   },
   {
     url: "https://i.postimg.cc/4xHDK2dJ/coffeshop.png",
@@ -54,5 +59,6 @@ export const projectsData: ProjectData[] = [
     github: "https://github.com/LuizHondo/web_project_coffeeshop",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
     caseStudyGithub: "https://github.com/LuizHondo/web_project_coffeeshop",
+    shaderColor: "#D946EF",
   },
 ];
