@@ -452,8 +452,9 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
     };
 
     if (followCursor) {
-      canvas.addEventListener("mousemove", handleMouseMove);
-      canvas.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("blur", handleMouseLeave);
     }
 
     animationFrameId = requestAnimationFrame(renderLoop);
@@ -461,9 +462,10 @@ const NeonReveal: React.FC<NeonRevealProps> = ({
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resize);
-      if (followCursor && canvas) {
-        canvas.removeEventListener("mousemove", handleMouseMove);
-        canvas.removeEventListener("mouseleave", handleMouseLeave);
+      if (followCursor) {
+        window.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+        window.removeEventListener("blur", handleMouseLeave);
       }
       geometry.dispose();
       material.dispose();

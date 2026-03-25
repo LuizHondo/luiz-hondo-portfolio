@@ -85,6 +85,7 @@ const HighlightWrapper = ({
   const highlightStyles: React.CSSProperties = {
     backgroundImage: `linear-gradient(${highlightColor}, ${highlightColor})`,
     backgroundRepeat: "no-repeat",
+    backgroundSize: metrics.initial,
     padding: 1,
     borderRadius: "5px",
     backgroundPosition: metrics.position,
