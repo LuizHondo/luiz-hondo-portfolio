@@ -32,7 +32,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen snap-start items-center justify-center pt-16">
+    <section className="relative flex flex-col min-h-screen snap-start items-center justify-center">
       <div className="absolute inset-0 z-0">
         <NeonReveal
           key={isDark ? "dark" : "light"}
@@ -47,7 +47,7 @@ const Hero = () => {
           followCursor={true}
         />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 pointer-events-none">
         <div className="max-w-3xl mx-auto text-center pointer-events-none">
         <motion.p
           initial={{ opacity: 0, y: 16 }}

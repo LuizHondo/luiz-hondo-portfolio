@@ -70,8 +70,8 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen snap-start bg-muted/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16">
+    <section id="contact" className="min-h-screen snap-start bg-muted/40 flex flex-col">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col flex-1 justify-center gap-8 sm:gap-10 lg:gap-14">
         <ScrollReveal>
           <div className="flex items-center justify-between mb-2">
             <div>

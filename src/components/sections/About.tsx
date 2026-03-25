@@ -17,9 +17,9 @@ const About = () => {
   return (
     <section
       id="about"
-      className="min-h-screen snap-start overflow-hidden"
+      className="min-h-screen snap-start overflow-hidden flex flex-col"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16 h-fit grid grid-rows-[auto,1fr] grid-cols-1">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col flex-1 justify-center gap-4 sm:gap-8">
         <ScrollReveal>
           <h2 className="text-heading-sm sm:text-heading text-foreground mb-px">
             {t("about.heading")}
