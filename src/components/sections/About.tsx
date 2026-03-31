@@ -1,88 +1,200 @@
 "use client";
 
-import { Download } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
-import ScrollReveal from "../common/ScrollReveal";
-import BlurHighlight from "../effects/BlurHighlight";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const FACT_CARDS = [
+  { labelKey: "about.facts.experience.label", valueKey: "about.facts.experience.value", accent: false },
+  { labelKey: "about.facts.projects.label", valueKey: "about.facts.projects.value", accent: false },
+  { labelKey: "about.facts.focus.label", valueKey: "about.facts.focus.value", accent: true },
+  { labelKey: "about.facts.approach.label", valueKey: "about.facts.approach.value", accent: true },
+];
 
 const About = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const statementRef = useRef<HTMLHeadingElement>(null);
+  const parasRef = useRef<HTMLDivElement>(null);
+  const factsRef = useRef<HTMLDivElement>(null);
 
-  const cvUrl =
-    i18n.language === "pt"
-      ? "https://drive.google.com/uc?export=download&id=1u80a4l4nKqbjGnBpu4kI0RQ8JuU0vW6D"
-      : "https://drive.google.com/uc?export=download&id=1oRFtbmbvF_hOXmqBTSF-LszGbCggd5E4";
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      // Statement reveal
+      if (statementRef.current) {
+        gsap.from(statementRef.current, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: statementRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+
+      // Paragraphs blur-to-clear
+      if (parasRef.current) {
+        const paras = parasRef.current.querySelectorAll("p");
+        gsap.from(paras, {
+          opacity: 0,
+          y: 20,
+          filter: "blur(8px)",
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: parasRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+
+      // Fact cards reveal
+      if (factsRef.current) {
+        const cards = factsRef.current.querySelectorAll("[data-fact-card]");
+        gsap.from(cards, {
+          opacity: 0,
+          x: 20,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: factsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const paragraphs = (() => {
+    const bio = t("about.bio");
+    // Split into ~3 paragraphs by sentence count
+    const sentences = bio.match(/[^.!?]+[.!?]+/g) || [bio];
+    const third = Math.ceil(sentences.length / 3);
+    return [
+      sentences.slice(0, third).join(" "),
+      sentences.slice(third, third * 2).join(" "),
+      sentences.slice(third * 2).join(" "),
+    ].filter(Boolean);
+  })();
 
   return (
     <section
       id="about"
-      className="min-h-screen snap-start overflow-hidden flex flex-col"
+      ref={sectionRef}
+      className="py-24 lg:py-32"
+      style={{ position: "relative", zIndex: 1 }}
     >
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 flex flex-col flex-1 justify-center gap-4 sm:gap-8">
-        <ScrollReveal>
-          <h2 className="text-heading-sm sm:text-heading text-foreground mb-px">
-            {t("about.heading")}
-          </h2>
-          <div className="h-1 w-12 rounded-full bg-primary mb-2 sm:mb-8" />
-        </ScrollReveal>
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Section tag */}
+        <span
+          className="font-mono text-xs uppercase tracking-widest block mb-12"
+          style={{ color: "var(--rust)" }}
+        >
+          {t("about.tag", "// 01 — Sobre")}
+        </span>
 
-        <div className="grid grid-cols-1 gap-2 sm:gap-8 min-h-0 lg:grid-cols-[1fr_2fr]">
-          <ScrollReveal delay={0.1}>
-            <div className="flex flex-row lg:flex-col  items-center justify-around gap-3 sm:gap-4">
-              <div className="flex w-20 h-20 sm:w-32 sm:h-32 lg:w-48 lg:h-48 items-center justify-center rounded-2xl">
-                <img
-                  src="https://i.postimg.cc/FKMyRbpv/my-Picture.png"
-                  alt={t("about.imageAlt")}
-                  loading="lazy"
-                  decoding="async"
-                  width={192}
-                  height={192}
-                  className="flex w-full items-center justify-center rounded-2xl bg-primary border border-solid p-1"
-                />
-              </div>
-              <Button
-                variant="outline"
-                className="gap-2 flex flex-col-reverse sm:flex-row text-sm sm:text-body-sm
-                 w-fit h-fit"
-                asChild
-              >
-                <a
-                  href={cvUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Download className="h-3 w-3 sm:h-4 sm:w-4" />
-                  {t("about.downloadCV")}
-                </a>
-              </Button>
-            </div>
-          </ScrollReveal>
-
-          <div className="text-sm sm:text-base text-justify overflow-y-auto min-h-0 leading-snug sm:leading-relaxed w-fit nosc">
-            <BlurHighlight
-              highlightedBits={
-                (() => {
-                  const bits = t("about.highlights", {
-                    returnObjects: true,
-                  });
-                  return Array.isArray(bits) ? bits : [];
-                })()
-              }
-              highlightColor="#2a7872"
-              highlightDelay={0.6}
-              highlightDuration={2}
-              blurAmount={0}
-              inactiveOpacity={1}
-              blurDuration={0}
-              className="h-fit"
+        {/* Two-column layout */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-28"
+        >
+          {/* Left: statement + paragraphs */}
+          <div>
+            <h2
+              ref={statementRef}
+              className="font-display font-bold mb-10"
+              style={{
+                fontSize: "clamp(28px, 3.5vw, 48px)",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.15,
+              }}
             >
-              {t("about.bio")}
-            </BlurHighlight>
+              {t("about.statement", "Construo produtos que funcionam de verdade,")}
+              {" "}
+              <span style={{ color: "var(--gray-mid)" }}>
+                {t("about.statementMuted", "e bem executados.")}
+              </span>
+            </h2>
+
+            <div ref={parasRef} className="space-y-5">
+              {paragraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="font-body text-base leading-relaxed"
+                  style={{ color: "var(--concrete)" }}
+                >
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: fact cards */}
+          <div ref={factsRef} className="flex flex-col gap-0.5 self-start">
+            {FACT_CARDS.map(({ labelKey, valueKey, accent }) => (
+              <FactCard
+                key={labelKey}
+                label={t(labelKey)}
+                value={t(valueKey)}
+                accent={accent}
+              />
+            ))}
           </div>
         </div>
       </div>
     </section>
+  );
+};
+
+interface FactCardProps {
+  label: string;
+  value: string;
+  accent: boolean;
+}
+
+const FactCard = ({ label, value, accent }: FactCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={cardRef}
+      data-fact-card
+      className="flex items-center justify-between px-6 py-5 transition-colors duration-200"
+      style={{ backgroundColor: "var(--gray-dark)", border: "1px solid rgba(255,255,255,0.04)" }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLDivElement).style.backgroundColor = "rgba(255,255,255,0.04)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.backgroundColor = "var(--gray-dark)";
+      }}
+    >
+      <span
+        className="font-mono text-xs uppercase tracking-widest"
+        style={{ color: "var(--gray-mid)" }}
+      >
+        {label}
+      </span>
+      <span
+        className="font-display font-bold text-xl"
+        style={{ color: accent ? "var(--rust)" : "var(--white)" }}
+      >
+        {value}
+      </span>
+    </div>
   );
 };
 
