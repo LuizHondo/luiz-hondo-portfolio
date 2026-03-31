@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
 
 export default {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -19,6 +19,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["var(--display)", "Georgia", "serif"],
+        body: ["var(--body)", "system-ui", "sans-serif"],
+        mono: ["var(--mono)", "Courier New", "monospace"],
+      },
       fontSize: {
         display: [
           "3.5rem",
@@ -42,6 +47,13 @@ export default {
         caption: ["0.75rem", { lineHeight: "1.4", fontWeight: "500" }],
       },
       colors: {
+        black: "var(--black)",
+        white: "var(--white)",
+        rust: "var(--rust)",
+        concrete: "var(--concrete)",
+        gold: "var(--gold)",
+        "gray-dark": "var(--gray-dark)",
+        "gray-mid": "var(--gray-mid)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
