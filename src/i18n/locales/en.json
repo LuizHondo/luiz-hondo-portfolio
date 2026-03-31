@@ -12,15 +12,23 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Luiz Hondo",
-    "title": "Fullstack Developer",
-    "tagline": "Turning real problems into solutions|that deliver true value.",
-    "projectsBtn": "My projects",
-    "contactBtn": "Get in touch"
+    "title": "Building digital products that matter",
+    "eyebrow": "Full Stack Developer",
+    "availability": "Available for projects",
+    "location": "Presidente Prudente, SP",
+    "titles": ["Fullstack Developer", "React Specialist", "Problem Solver"],
+    "tagline": "I turn real challenges into clear, efficient digital products that actually work.",
+    "projectsBtn": "View projects",
+    "contactBtn": "Get in touch",
+    "scrollHint": "Scroll to explore"
   },
   "about": {
     "heading": "About me",
+    "tag": "// 01 — About",
     "imageAlt": "Picture of Luiz",
     "downloadCV": "Download CV",
+    "statement": "I build products that actually work,",
+    "statementMuted": "and are well executed.",
     "bio": "I'm a fullstack developer with a degree in Systems Analysis, focused on turning real challenges into clear, efficient, and sustainable digital solutions. Throughout my career, I've learned that technology only creates value when it solves concrete problems and facilitates decisions. That's why I work with discipline, organization, and critical thinking, always seeking to understand the context before proposing any solution. I use tools like React, React Native, and TypeScript strategically — not just to build modern interfaces, but to structure scalable, well-planned, and long-term reliable applications. I believe trust is built through consistency, attention to detail, and commitment to deliveries that truly work. My goal is to develop solutions that make sense today and remain solid tomorrow.",
     "highlights": [
       "turning real challenges into clear, efficient, and sustainable digital solutions",
@@ -28,10 +36,17 @@
       "long-term reliable",
       "attention to detail and commitment to deliveries",
       "remain solid tomorrow"
-    ]
+    ],
+    "facts": {
+      "experience": { "label": "Experience", "value": "5+ years" },
+      "projects": { "label": "Projects delivered", "value": "40+" },
+      "focus": { "label": "Focus", "value": "Product" },
+      "approach": { "label": "Approach", "value": "Full Stack" }
+    }
   },
   "projects": {
     "heading": "Projects",
+    "tag": "// 02 — Projects",
     "viewDetails": "View details",
     "previewAlt": "Project preview: {{title}}",
     "items": [
@@ -94,6 +109,10 @@
   },
   "contact": {
     "heading": "Let's talk?",
+    "tag": "// 03 — Contact",
+    "ctaHeading": "Got a project",
+    "ctaHeadingMuted": "in mind?",
+    "emailBtn": "Send email",
     "description": "Help me help you! Do you have a problem or task and need to find a solution? An application? A system? A website that's uniquely yours? Send me a message with no strings attached and let's work on it together.",
     "nameLabel": "Name",
     "namePlaceholder": "Your name",
@@ -114,6 +133,25 @@
       "errorTitle": "Oops!",
       "errorDescription": "Something went wrong. Please wait a moment and try again"
     }
+  },
+  "services": {
+    "tag": "// 01 — Competencies",
+    "title": "What I build",
+    "description": "From idea to final product — with clean code, intentional design, and architecture that scales.",
+    "items": [
+      {
+        "name": "Complete product",
+        "description": "From requirements gathering to production delivery. I handle every layer — front, back, and infrastructure — with a focus on real products that deliver value."
+      },
+      {
+        "name": "Intentional interfaces",
+        "description": "Interfaces that communicate clarity. Reusable components, responsive design, and interactions that guide users without friction."
+      },
+      {
+        "name": "Systems that scale",
+        "description": "Well-structured APIs, optimized databases, and architecture built to grow without breaking. Clean, tested, and maintainable code."
+      }
+    ]
   },
   "caseStudy": {
     "problem": "Problem",
@@ -167,6 +205,11 @@
     "fontEmpty": "Font file is empty",
     "fontLoadFailed": "Failed to load font",
     "captionFontLoading": "Caption font is still loading. Please wait and try again."
+  },
+  "divider": {
+    "row1": ["Structure", "Presence", "Capability"],
+    "row2": ["React", "Node", "Next.js", "TypeScript", "PostgreSQL", "Docker", "Prisma", "Redis", "Tailwind"],
+    "row3": ["From concept to interface"]
   },
   "footer": {
     "copyright": "© {{year}} Luiz Hondo. All rights reserved."

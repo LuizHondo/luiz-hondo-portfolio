@@ -12,15 +12,27 @@
   "hero": {
     "greeting": "Olá, eu sou",
     "name": "Luiz Hondo",
-    "title": "Desenvolvedor Fullstack",
-    "tagline": "Transformando problemas reais em soluções|que entregam valor de verdade.",
-    "projectsBtn": "Meus projetos",
-    "contactBtn": "Fale comigo"
+    "title": "Construindo produtos digitais que importam",
+    "eyebrow": "Full Stack Developer",
+    "availability": "Disponível para projetos",
+    "location": "Presidente Prudente, SP",
+    "titles": [
+      "Desenvolvedor Fullstack",
+      "Especialista React",
+      "Solucionador de Problemas"
+    ],
+    "tagline": "Transformo desafios reais em produtos digitais claros, eficientes e que funcionam de verdade.",
+    "projectsBtn": "Ver projetos",
+    "contactBtn": "Falar comigo",
+    "scrollHint": "Role para explorar"
   },
   "about": {
     "heading": "Sobre mim",
+    "tag": "// 01 — Sobre",
     "imageAlt": "Imagem de Luiz",
     "downloadCV": "Baixar CV",
+    "statement": "Construo produtos que funcionam de verdade,",
+    "statementMuted": "e bem executados.",
     "bio": "Sou desenvolvedor fullstack com formação em Análise de Sistemas e foco em transformar desafios reais em soluções digitais claras, eficientes e sustentáveis. Ao longo da minha trajetória, aprendi que tecnologia só gera valor quando resolve problemas concretos e facilita decisões. Por isso, trabalho com disciplina, organização e pensamento crítico, buscando sempre entender o contexto antes de propor qualquer solução. Utilizo ferramentas como React, React Native e TypeScript de forma estratégica, não apenas para construir interfaces modernas, mas para estruturar aplicações escaláveis, bem planejadas e confiáveis no longo prazo. Acredito que confiança se constrói com consistência, atenção aos detalhes e compromisso com entregas que realmente funcionam. Meu objetivo é desenvolver soluções que façam sentido hoje e permaneçam sólidas amanhã.",
     "highlights": [
       "transformar desafios reais em soluções digitais claras, eficientes e sustentáveis",
@@ -28,10 +40,29 @@
       "confiáveis no longo prazo",
       "atenção aos detalhes e compromisso com entregas",
       "permaneçam sólidas amanhã"
-    ]
+    ],
+    "facts": {
+      "experience": {
+        "label": "Experiência",
+        "value": "5+ anos"
+      },
+      "projects": {
+        "label": "Projetos entregues",
+        "value": "40+"
+      },
+      "focus": {
+        "label": "Foco",
+        "value": "Produto"
+      },
+      "approach": {
+        "label": "Abordagem",
+        "value": "Full Stack"
+      }
+    }
   },
   "projects": {
     "heading": "Projetos",
+    "tag": "// 02 — Projetos",
     "viewDetails": "Ver detalhes",
     "previewAlt": "Preview do projeto: {{title}}",
     "items": [
@@ -94,6 +125,10 @@
   },
   "contact": {
     "heading": "Vamos conversar?",
+    "tag": "// 03 — Contato",
+    "ctaHeading": "Tem um projeto",
+    "ctaHeadingMuted": "em mente?",
+    "emailBtn": "Enviar email",
     "description": "Me ajude a te ajudar! Tem algum problema ou tarefa e precisa encontrar uma solução? Uma aplicação? Um sistema? Um site só seu com a sua cara? Me mande uma mensagem sem compromisso e vamos trabalhar juntos nisso.",
     "nameLabel": "Nome",
     "namePlaceholder": "Seu nome",
@@ -114,6 +149,25 @@
       "errorTitle": "Opa!",
       "errorDescription": "Alguma coisa deu errado. Espere um pouco e tente novamente"
     }
+  },
+  "services": {
+    "tag": "// 01 — Competências",
+    "title": "O que eu construo",
+    "description": "Da ideia ao produto final — com código limpo, design intencional e arquitetura que escala.",
+    "items": [
+      {
+        "name": "Produto completo",
+        "description": "Do levantamento de requisitos à entrega em produção. Cuido de cada camada — front, back e infraestrutura — com foco em produto real que gera valor."
+      },
+      {
+        "name": "Interface com intenção",
+        "description": "Interfaces que comunicam clareza. Componentes reutilizáveis, design responsivo e interações que guiam o usuário sem atrito."
+      },
+      {
+        "name": "Sistemas que escalam",
+        "description": "APIs bem estruturadas, bancos de dados otimizados e arquitetura pensada para crescer sem travar. Código limpo, testado e mantível."
+      }
+    ]
   },
   "caseStudy": {
     "problem": "Problema",
@@ -167,6 +221,24 @@
     "fontEmpty": "Arquivo de fonte está vazio",
     "fontLoadFailed": "Falha ao carregar fonte",
     "captionFontLoading": "A fonte da legenda ainda está carregando. Aguarde e tente novamente."
+  },
+  "divider": {
+    "row1": [
+      "Estrutura",
+      "Presença",
+      "Capacidade"
+    ],
+    "row2": [
+      "React",
+      "Node",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Tailwind"
+    ],
+    "row3": [
+      "Do conceito à interface"
+    ]
   },
   "footer": {
     "copyright": "© {{year}} Luiz Hondo. Todos os direitos reservados."
