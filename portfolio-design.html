@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luiz Hondo — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --black: #0F0F10;
+      --white: #F5F3EF;
+      --concrete: #B8B2A7;
+      --rust: #C65A3A;
+      --gold: #D9A441;
+      --gray-dark: #1A1A1B;
+      --gray-mid: #6B6560;
+      --display: 'Bricolage Grotesque', sans-serif;
+      --body: 'Manrope', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: var(--rust);
+      color: var(--white);
+    }
+
+    html {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      cursor: none;
+    }
+
+    /* NOISE */
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+    }
+
+    /* GRID BG */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: linear-gradient(to right, rgba(245, 243, 239, 0.025) 1px, transparent 1px);
+      background-size: calc(100vw / 12) 100%;
+      background-position: 48px 0;
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--rust);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s var(--ease-out), opacity 0.2s;
+      mix-blend-mode: normal;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(198, 90, 58, 0.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.25s var(--ease-out), width 0.3s var(--ease-out), height 0.3s var(--ease-out), opacity 0.2s;
+    }
+
+    body:hover .cursor {
+      opacity: 1;
+    }
+
+    a:hover~.cursor,
+    button:hover~.cursor {
+      transform: translate(-50%, -50%) scale(2);
+    }
+
+    /* SPARK */
+    .spark {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9997;
+    }
+
+    .spark-line {
+      position: absolute;
+      width: 1.5px;
+      height: 10px;
+      background: var(--rust);
+      transform-origin: center bottom;
+      opacity: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(15, 15, 16, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom-color: rgba(245, 243, 239, 0.06);
+    }
+
+    .nav-brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-brand span {
+      color: var(--rust);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--concrete);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(42px, 7vw, 96px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      max-width: 900px;
+      margin-bottom: 32px;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      margin-right: 0.22em;
+    }
+
+    .hero-title .word-inner {
+      display: inline-block;
+      transform: translateY(110%);
+    }
+
+    .hero-title .accent {
+      color: var(--rust);
+    }
+
+    .hero-sub {
+      font-family: var(--body);
+      font-size: clamp(16px, 1.8vw, 20px);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--concrete);
+      max-width: 520px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      background: var(--white);
+      padding: 16px 32px;
+      border: none;
+      cursor: none;
+      transition: all 0.3s var(--ease-out);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--rust);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--concrete);
+      padding: 16px 0;
+      border: none;
+      background: none;
+      cursor: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      color: var(--white);
+    }
+
+    .btn-secondary .arrow {
+      transition: transform 0.3s var(--ease-out);
+      display: inline-block;
+    }
+
+    .btn-secondary:hover .arrow {
+      transform: translateX(6px);
+    }
+
+    .hero-meta {
+      position: absolute;
+      bottom: 48px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      opacity: 0;
+    }
+
+    .hero-meta-item {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+    }
+
+    .hero-meta-item .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rust);
+      margin-right: 6px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.3
+      }
+    }
+
+    /* DIVIDER */
+    .divider {
+      padding: 60px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(245, 243, 239, 0.05);
+      border-bottom: 1px solid rgba(245, 243, 239, 0.05);
+    }
+
+    .divider-track {
+      display: flex;
+      white-space: nowrap;
+      gap: 48px;
+      animation: marquee 22s linear infinite;
+    }
+
+    .divider-track span {
+      font-family: var(--display);
+      font-size: clamp(28px, 5vw, 64px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245, 243, 239, 0.08);
+      flex-shrink: 0;
+    }
+
+    .divider-track span.filled {
+      -webkit-text-stroke: none;
+      color: rgba(245, 243, 239, 0.06);
+    }
+
+    .divider-track.reverse {
+      animation-direction: reverse;
+      animation-duration: 18s;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 160px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 80px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+    }
+
+    .section-desc {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--concrete);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(245, 243, 239, 0.04);
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 48px 36px;
+      transition: background 0.4s;
+    }
+
+    .service-card:hover {
+      background: rgba(198, 90, 58, 0.04);
+    }
+
+    .service-card:hover .service-icon {
+      color: var(--rust);
+      transform: translateY(-4px);
+    }
+
+    .service-number {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gray-mid);
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .service-icon {
+      font-size: 28px;
+      margin-bottom: 24px;
+      display: block;
+      transition: all 0.4s var(--ease-out);
+      color: var(--concrete);
+    }
+
+    .service-name {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .service-desc {
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--concrete);
+      line-height: 1.8;
+    }
+
+    /* PROJECTS */
+    .projects {
+      padding: 160px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 2px;
+    }
+
+    .project-info {
+      background: var(--gray-dark);
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+      transition: background 0.4s;
+    }
+
+    .project-card:hover .project-info {
+      background: #222224;
+    }
+
+    .project-card:hover .project-title {
+      color: var(--rust);
+    }
+
+    .project-card:hover .project-link .arrow {
+      transform: translateX(6px);
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+
+    .project-number {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+      letter-spacing: 1px;
+    }
+
+    .project-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gray-mid);
+    }
+
+    .project-title {
+      font-family: var(--display);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+
+    .project-problem {
+      font-family: var(--body);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--concrete);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .project-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border: 1px solid rgba(245, 243, 239, 0.12);
+      color: var(--concrete);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover .tag {
+      border-color: rgba(198, 90, 58, 0.3);
+      color: var(--white);
+    }
+
+    .project-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+
+    .project-link .arrow {
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .project-visual {
+      background: var(--gray-dark);
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-visual-inner {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .project-card:hover .project-visual-inner {
+      transform: scale(1.03);
+    }
+
+    .project-mockup {
+      width: 80%;
+      max-width: 360px;
+      aspect-ratio: 4/3;
+      border: 1px solid rgba(245, 243, 239, 0.08);
+      background: var(--black);
+    }
+
+    .mockup-bar {
+      height: 28px;
+      border-bottom: 1px solid rgba(245, 243, 239, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+    }
+
+    .mockup-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 243, 239, 0.15);
+    }
+
+    .mockup-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mockup-line {
+      height: 3px;
+      background: rgba(245, 243, 239, 0.06);
+      border-radius: 1px;
+    }
+
+    .mockup-line.short {
+      width: 40%;
+    }
+
+    .mockup-line.med {
+      width: 70%;
+    }
+
+    .mockup-line.long {
+      width: 90%;
+    }
+
+    .mockup-line.accent {
+      background: var(--rust);
+      opacity: 0.35;
+      width: 30%;
+      height: 6px;
+    }
+
+    .mockup-block {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .mockup-rect {
+      height: 40px;
+      background: rgba(245, 243, 239, 0.03);
+      border: 1px solid rgba(245, 243, 239, 0.05);
+    }
+
+    /* Mobile mockup variant */
+    .mockup-mobile {
+      width: 45%;
+      max-width: 160px;
+      aspect-ratio: 9/16;
+      border: 1px solid rgba(245, 243, 239, 0.08);
+      background: var(--black);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .mockup-mobile .mockup-bar {
+      height: 22px;
+      border-radius: 0;
+      justify-content: center;
+    }
+
+    .mockup-mobile .mockup-dot {
+      width: 40px;
+      height: 5px;
+      border-radius: 3px;
+      border: none;
+      background: rgba(245, 243, 239, 0.1);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 160px 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 120px;
+      align-items: start;
+    }
+
+    .about-statement {
+      font-family: var(--display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 40px;
+    }
+
+    .about-statement .muted {
+      color: var(--gray-mid);
+    }
+
+    .about-body {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--concrete);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .fact {
+      background: var(--gray-dark);
+      padding: 32px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    .fact:hover {
+      background: #222224;
+    }
+
+    .fact-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--concrete);
+    }
+
+    .fact-value {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .fact-value.rust {
+      color: var(--rust);
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 160px 48px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-big {
+      font-family: var(--display);
+      font-size: clamp(36px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .cta-big .muted {
+      color: var(--gray-mid);
+    }
+
+    .cta-desc {
+      font-family: var(--body);
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--concrete);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .cta-contact-grid {
+      margin-top: 80px;
+      display: flex;
+      gap: 2px;
+    }
+
+    .contact-block {
+      background: var(--gray-dark);
+      padding: 32px 40px;
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.3s;
+      min-width: 200px;
+      text-align: left;
+    }
+
+    .contact-block:hover {
+      background: #222224;
+    }
+
+    .contact-block:hover .contact-val {
+      color: var(--rust);
+    }
+
+    .contact-type {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 12px;
+    }
+
+    .contact-val {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 600;
+      transition: color 0.3s;
+      word-break: break-all;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(245, 243, 239, 0.05);
+      position: relative;
+      z-index: 1;
+    }
+
+    footer span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gray-mid);
+      letter-spacing: 1px;
+    }
+
+    footer .rust-dot {
+      color: var(--rust);
+    }
+
+    /* GSAP INITIAL STATES */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .reveal-fade {
+      opacity: 0;
+      filter: blur(8px);
+      transform: translateY(16px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 0 24px;
+      }
+
+      .hero-meta {
+        display: none;
+      }
+
+      .services,
+      .projects,
+      .about,
+      .cta-section {
+        padding: 100px 24px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .project-visual {
+        min-height: 200px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .cta-contact-grid {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .contact-block {
+        min-width: auto;
+      }
+
+      footer {
+        padding: 24px;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Fixed overlays -->
+  <div class="noise"></div>
+  <div class="grid-bg"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#" class="nav-brand">Luiz<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Sobre mim</a></li>
+      <li><a href="#projects">Projetos</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-eyebrow">Full Stack Developer</div>
+    <h1 class="hero-title" id="heroTitle">
+      Transformo ideias em <span class="accent">produtos digitais</span> que funcionam de verdade.
+    </h1>
+    <p class="hero-sub">Do conceito à produção — arquitetura, interface e código. Sem enrolação, sem firula, sem
+      framework da moda sem propósito.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">Ver projetos</a>
+      <a href="#contact" class="btn-secondary">Falar comigo <span class="arrow">→</span></a>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-item"><span class="dot"></span>Disponível para projetos</span>
+      <span class="hero-meta-item">Presidente Prudente, SP</span>
+      <span class="hero-meta-item">© 2026</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE 1 -->
+  <div class="divider">
+    <div class="divider-track" id="divider1">
+      <span>Estrutura</span><span class="filled">·</span>
+      <span>Presença</span><span class="filled">·</span>
+      <span>Capacidade</span><span class="filled">·</span>
+      <span>Estrutura</span><span class="filled">·</span>
+      <span>Presença</span><span class="filled">·</span>
+      <span>Capacidade</span><span class="filled">·</span>
+      <span>Estrutura</span><span class="filled">·</span>
+      <span>Presença</span><span class="filled">·</span>
+      <span>Capacidade</span><span class="filled">·</span>
+      <span>Estrutura</span><span class="filled">·</span>
+      <span>Presença</span><span class="filled">·</span>
+      <span>Capacidade</span><span class="filled">·</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">// 01 — Competências</div>
+        <h2 class="section-title">O que eu construo</h2>
+      </div>
+      <p class="section-desc">Não vendo stack. Resolvo problemas reais com código que vai pra produção e fica lá
+        funcionando.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal-up">
+        <div class="service-number">01</div>
+        <span class="service-icon">⬡</span>
+        <h3 class="service-name">Produto completo</h3>
+        <p class="service-desc">Da ideia ao deploy. Arquitetura, banco, API, interface — tudo conectado, testado e
+          rodando.</p>
+      </div>
+      <div class="service-card reveal-up">
+        <div class="service-number">02</div>
+        <span class="service-icon">◈</span>
+        <h3 class="service-name">Interface com intenção</h3>
+        <p class="service-desc">Não é só bonito. É pensado pro usuário, pro fluxo e pro negócio. Design que converte e
+          funciona.</p>
+      </div>
+      <div class="service-card reveal-up">
+        <div class="service-number">03</div>
+        <span class="service-icon">▣</span>
+        <h3 class="service-name">Sistemas que escalam</h3>
+        <p class="service-desc">APIs robustas, filas, cache, CI/CD. Código que aguenta crescer sem virar um problema
+          depois.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE 2 — TECH -->
+  <div class="divider">
+    <div class="divider-track reverse" id="divider2">
+      <span>React</span><span class="filled">·</span>
+      <span>Node</span><span class="filled">·</span>
+      <span>Next.js</span><span class="filled">·</span>
+      <span>TypeScript</span><span class="filled">·</span>
+      <span>PostgreSQL</span><span class="filled">·</span>
+      <span>Tailwind</span><span class="filled">·</span>
+      <span>React</span><span class="filled">·</span>
+      <span>Node</span><span class="filled">·</span>
+      <span>Next.js</span><span class="filled">·</span>
+      <span>TypeScript</span><span class="filled">·</span>
+      <span>PostgreSQL</span><span class="filled">·</span>
+      <span>Docker</span><span class="filled">·</span>
+      <span>Prisma</span><span class="filled">·</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">// 02 — Trabalhos selecionados</div>
+        <h2 class="section-title">Projetos</h2>
+      </div>
+      <p class="section-desc">Cada projeto é um problema resolvido. Não uma demo — um produto real.</p>
+    </div>
+
+    <!-- Project 01 -->
+    <div class="project-card reveal-up">
+      <div class="project-info">
+        <div>
+          <div class="project-meta">
+            <span class="project-number">01</span>
+            <span class="project-year">2025</span>
+          </div>
+          <h3 class="project-title">Lista de Compras Mobile</h3>
+          <p class="project-problem">
+            <strong style="color:var(--white);font-weight:500">Problema:</strong> Famílias perdiam tempo sincronizando
+            listas de compras manualmente entre membros.<br><br>
+            <strong style="color:var(--white);font-weight:500">Solução:</strong> App React Native com listas
+            colaborativas em tempo real, categorias e histórico de compras.
+          </p>
+        </div>
+        <div class="project-bottom">
+          <div class="project-tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Expo</span>
+          </div>
+          <a href="#" class="project-link">Ver case <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="project-visual">
+        <div class="project-visual-inner">
+          <!-- Mobile mockup -->
+          <div class="mockup-mobile">
+            <div class="mockup-bar">
+              <div class="mockup-dot"></div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-line accent"></div>
+              <div class="mockup-line long"></div>
+              <div class="mockup-line med"></div>
+              <div class="mockup-line short"></div>
+              <div class="mockup-line long"></div>
+              <div class="mockup-line med"></div>
+              <div class="mockup-line short"></div>
+              <div class="mockup-line long"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 02 -->
+    <div class="project-card reveal-up">
+      <div class="project-visual" style="order:-1">
+        <div class="project-visual-inner">
+          <div class="project-mockup">
+            <div class="mockup-bar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-line short"></div>
+              <div class="mockup-line long"></div>
+              <div class="mockup-line accent"></div>
+              <div class="mockup-line med"></div>
+              <div class="mockup-block">
+                <div class="mockup-rect" style="height:55px"></div>
+                <div class="mockup-rect" style="height:55px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-meta">
+            <span class="project-number">02</span>
+            <span class="project-year">2025</span>
+          </div>
+          <h3 class="project-title">Biblioteca Digital</h3>
+          <p class="project-problem">
+            <strong style="color:var(--white);font-weight:500">Problema:</strong> Bibliotecas locais sem presença
+            digital perdiam leitores para plataformas genéricas sem curadoria.<br><br>
+            <strong style="color:var(--white);font-weight:500">Solução:</strong> Site de acervo literário com busca
+            avançada, filtros por gênero e sistema de reserva online.
+          </p>
+        </div>
+        <div class="project-bottom">
+          <div class="project-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Tailwind</span>
+          </div>
+          <a href="#" class="project-link">Ver case <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 03 -->
+    <div class="project-card reveal-up">
+      <div class="project-info">
+        <div>
+          <div class="project-meta">
+            <span class="project-number">03</span>
+            <span class="project-year">2024</span>
+          </div>
+          <h3 class="project-title">API com Autenticação</h3>
+          <p class="project-problem">
+            <strong style="color:var(--white);font-weight:500">Problema:</strong> Times implementavam autenticação do
+            zero a cada projeto, gerando inconsistências e vulnerabilidades.<br><br>
+            <strong style="color:var(--white);font-weight:500">Solução:</strong> API REST completa com JWT, refresh
+            tokens, rate limiting e documentação Swagger pronta pra usar.
+          </p>
+        </div>
+        <div class="project-bottom">
+          <div class="project-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Prisma</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <a href="#" class="project-link">Ver case <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="project-visual">
+        <div class="project-visual-inner">
+          <div class="project-mockup">
+            <div class="mockup-bar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-line med"></div>
+              <div class="mockup-line accent"></div>
+              <div class="mockup-line long"></div>
+              <div class="mockup-line short"></div>
+              <div class="mockup-line long"></div>
+              <div class="mockup-block">
+                <div class="mockup-rect" style="height:28px"></div>
+                <div class="mockup-rect" style="height:28px"></div>
+                <div class="mockup-rect" style="height:28px"></div>
+                <div class="mockup-rect" style="height:28px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE 3 -->
+  <div class="divider">
+    <div class="divider-track" id="divider3">
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+      <span class="filled">Do conceito à interface</span><span class="filled">·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="section-tag" style="margin-bottom:60px">// 03 — Sobre</div>
+    <div class="about-grid">
+      <div class="about-left">
+        <h2 class="about-statement reveal-up">
+          Sou um desenvolvedor focado em transformar ideias em interfaces funcionais, claras <span class="muted">e bem
+            executadas.</span>
+        </h2>
+        <p class="about-body reveal-fade">Gosto de unir estrutura, estética e utilidade pra construir produtos que
+          realmente façam sentido para as pessoas. Não escolho framework por hype — escolho pela solução.</p>
+        <p class="about-body reveal-fade">Meu processo começa entendendo o problema real antes de abrir o editor. Depois
+          disso, é arquitetura, código limpo e entrega. Cada linha tem propósito.</p>
+      </div>
+      <div class="about-right reveal-up">
+        <div class="about-facts">
+          <div class="fact">
+            <span class="fact-label">Experiência</span>
+            <span class="fact-value">3+ anos</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Projetos entregues</span>
+            <span class="fact-value">20+</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Foco</span>
+            <span class="fact-value rust">Produto</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Abordagem</span>
+            <span class="fact-value rust">Full Stack</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="cta-section" id="contact">
+    <div class="section-tag" style="margin-bottom:40px">// 04 — Contato</div>
+    <h2 class="cta-big reveal-up">Tem um projeto<br><span class="muted">em mente?</span></h2>
+    <p class="cta-desc reveal-fade">Posso te ajudar a tirar isso do papel. Do conceito à entrega — com código limpo,
+      interface intencional e zero enrolação.</p>
+    <div class="cta-buttons reveal-up">
+      <a href="mailto:luizhondo.dev@gmail.com" class="btn-primary">Enviar email</a>
+      <a href="https://github.com/luiz-hondo" target="_blank" class="btn-secondary">Ver GitHub <span
+          class="arrow">→</span></a>
+    </div>
+    <div class="cta-contact-grid reveal-up">
+      <a class="contact-block" href="mailto:luizhondo.dev@gmail.com">
+        <div class="contact-type">Email</div>
+        <div class="contact-val">luizhondo.dev@gmail.com</div>
+      </a>
+      <a class="contact-block" href="https://github.com/luiz-hondo" target="_blank">
+        <div class="contact-type">Github</div>
+        <div class="contact-val">@luiz-hondo</div>
+      </a>
+      <a class="contact-block" href="https://linkedin.com/in/luiz-hondo" target="_blank">
+        <div class="contact-type">LinkedIn</div>
+        <div class="contact-val">/in/luiz-hondo</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Luiz Hondo</span>
+    <span>Feito com código <span class="rust-dot">●</span> café</span>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ─── HERO ANIMATIONS ──────────────────────────────────────────────────────────
+    (function () {
+      const title = document.getElementById('heroTitle');
+      const html = title.innerHTML;
+      const wrapped = html.replace(/(<[^>]+>[\s\S]*?<\/[^>]+>)|(\b\S+\b)/g, (m, tag, word) => {
+        if (tag) return '<span class="word"><span class="word-inner">' + tag + '</span></span>';
+        if (word) return '<span class="word"><span class="word-inner">' + word + '</span></span>';
+        return m;
+      });
+      title.innerHTML = wrapped;
+
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.8, delay: 0.3 })
+        .to('.hero-title .word-inner', {
+          y: 0, duration: 0.9,
+          stagger: 0.07, ease: 'power4.out'
+        }, '-=0.4')
+        .to('.hero-sub', { opacity: 1, y: 0, duration: 0.7 }, '-=0.3')
+        .to('.hero-ctas', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
+        .to('.hero-meta', { opacity: 1, duration: 0.7 }, '-=0.3');
+    })();
+
+    // ─── NAV SCROLL ───────────────────────────────────────────────────────────────
+    window.addEventListener('scroll', () => {
+      document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
+    gsap.utils.toArray('.reveal-up').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.9,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    gsap.utils.toArray('.reveal-fade').forEach(el => {
+      gsap.to(el, {
+        opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // Service cards stagger
+    gsap.utils.toArray('.service-card').forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 85%',
+        onEnter: () => gsap.to(card, { opacity: 1, y: 0, duration: 0.7, delay: i * 0.1, ease: 'power3.out' })
+      });
+    });
+
+    // Project cards
+    gsap.utils.toArray('.project-card').forEach((card, i) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: 'top 85%',
+        onEnter: () => gsap.to(card, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+      });
+    });
+
+    // ─── CURSOR ───────────────────────────────────────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function animateCursor() {
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      cursorRing.style.left = rx + 'px';
+      cursorRing.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorRing.style.width = '52px';
+        cursorRing.style.height = '52px';
+        cursorRing.style.borderColor = 'rgba(198,90,58,0.7)';
+        cursor.style.opacity = '0';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorRing.style.width = '32px';
+        cursorRing.style.height = '32px';
+        cursorRing.style.borderColor = 'rgba(198,90,58,0.4)';
+        cursor.style.opacity = '1';
+      });
+    });
+
+    // ─── SPARK CURSOR TRAIL ───────────────────────────────────────────────────────
+    (function () {
+      let lastX = 0, lastY = 0, ticking = false;
+      const SPARK_COUNT = 6;
+      const pool = [];
+
+      function createSpark() {
+        const el = document.createElement('div');
+        el.className = 'spark';
+        const line = document.createElement('div');
+        line.className = 'spark-line';
+        el.appendChild(line);
+        document.body.appendChild(el);
+        return { el, line };
+      }
+
+      for (let i = 0; i < SPARK_COUNT; i++) pool.push(createSpark());
+
+      let idx = 0;
+      let lastTime = 0;
+
+      document.addEventListener('mousemove', e => {
+        const now = Date.now();
+        if (now - lastTime < 40) return;
+        lastTime = now;
+
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 8) return;
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+
+        const spark = pool[idx % SPARK_COUNT];
+        idx++;
+
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI + 90 + (Math.random() - 0.5) * 60;
+        const length = 8 + Math.random() * 10;
+
+        spark.el.style.left = e.clientX + 'px';
+        spark.el.style.top = e.clientY + 'px';
+        spark.line.style.height = length + 'px';
+        spark.line.style.transform = `rotate(${angle}deg)`;
+        spark.line.style.opacity = '0.7';
+        spark.line.style.background = Math.random() > 0.6 ? '#D9A441' : '#C65A3A';
+
+        gsap.to(spark.line, {
+          opacity: 0,
+          y: -12 - Math.random() * 10,
+          duration: 0.45,
+          ease: 'power2.out',
+          overwrite: true
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+
+</html>
