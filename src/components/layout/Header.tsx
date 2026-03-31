@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "../common/ThemeToggle";
 
 interface Breadcrumb {
   label: string;
@@ -124,7 +123,6 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
         )}
 
         <div className="hidden items-center gap-3 lg:flex">
-          <ThemeToggle />
           <Button asChild>
             <a href={ctaHref} onClick={(e) => ctaHref.startsWith("#") && handleHashClick(e, ctaHref)}>{t("header.cta")}</a>
           </Button>
@@ -132,7 +130,6 @@ const Header = ({ variant = "home", breadcrumbs = [] }: HeaderProps) => {
 
         {/* Mobile toggle */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
           <Button
             ref={toggleRef}
             variant="ghost"
