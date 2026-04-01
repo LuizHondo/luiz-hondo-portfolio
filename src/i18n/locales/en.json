@@ -39,7 +39,7 @@
     ],
     "facts": {
       "experience": { "label": "Experience", "value": "5+ years" },
-      "projects": { "label": "Projects delivered", "value": "40+" },
+      "projects": { "label": "Projects delivered", "value": "10+" },
       "focus": { "label": "Focus", "value": "Product" },
       "approach": { "label": "Approach", "value": "Full Stack" }
     }
