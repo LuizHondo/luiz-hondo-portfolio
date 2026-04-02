@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -53,23 +53,59 @@ interface ProjectCardProps {
   solution: string;
   tags: string[];
   github: string;
+  videoMp4?: string;
+  videoWebm?: string;
+  videoPoster?: string;
+  previewImage?: string;
+  accentColor?: string;
 }
 
-const ProjectCard = ({ number, year, title, problem, solution, tags, github }: ProjectCardProps) => {
+const ProjectCard = ({
+  number,
+  year,
+  title,
+  problem,
+  solution,
+  tags,
+  github,
+  videoMp4,
+  videoWebm,
+  videoPoster,
+  previewImage,
+  accentColor,
+}: ProjectCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const mockupRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isMobileLike, setIsMobileLike] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px), (hover: none), (pointer: coarse)");
+    setIsMobileLike(mediaQuery.matches);
+  }, []);
 
   const handleMouseEnter = () => {
     if (cardRef.current) cardRef.current.style.backgroundColor = "rgba(255,255,255,0.015)";
     if (titleRef.current) titleRef.current.style.color = "var(--rust)";
     if (mockupRef.current) mockupRef.current.style.transform = "scale(1.03)";
+    if (videoRef.current) {
+      void videoRef.current.play().catch(() => {
+        // Ignore autoplay errors from stricter browser policies.
+      });
+    }
   };
 
   const handleMouseLeave = () => {
     if (cardRef.current) cardRef.current.style.backgroundColor = "transparent";
     if (titleRef.current) titleRef.current.style.color = "var(--white)";
     if (mockupRef.current) mockupRef.current.style.transform = "scale(1)";
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsVideoPlaying(false);
+    }
   };
 
   return (
@@ -165,8 +201,39 @@ const ProjectCard = ({ number, year, title, problem, solution, tags, github }: P
         className="p-6 md:p-8 flex items-center justify-center transition-transform duration-300"
         style={{ borderLeft: "1px solid rgba(255,255,255,0.07)" }}
       >
-        <div className="w-full" style={{ minHeight: "200px" }}>
-          <ProjectMockup />
+        <div className="w-full relative overflow-hidden" style={{ minHeight: "200px" }}>
+          {videoMp4 || videoWebm ? (
+            <>
+              <video
+                ref={videoRef}
+                data-project-video
+                className="w-full h-full min-h-[280px] md:min-h-[360px] object-cover"
+                muted
+                playsInline
+                loop
+                preload="none"
+                poster={videoPoster ?? previewImage}
+                disablePictureInPicture
+                onPlay={() => setIsVideoPlaying(true)}
+                onPause={() => setIsVideoPlaying(false)}
+              >
+                {videoWebm ? <source src={videoWebm} type="video/webm" /> : null}
+                {videoMp4 ? <source src={videoMp4} type="video/mp4" /> : null}
+              </video>
+              <span
+                className="absolute top-3 left-3 font-mono text-[10px] sm:text-xs uppercase tracking-widest px-2.5 py-1 rounded-sm transition-colors duration-200"
+                style={{
+                  backgroundColor: "rgba(0,0,0,0.55)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: isVideoPlaying ? "var(--rust)" : "var(--gray-mid)",
+                }}
+              >
+                {isVideoPlaying ? "Playing" : isMobileLike ? "Auto play in center" : "Hover to play"}
+              </span>
+            </>
+          ) : (
+            <ProjectMockup accentColor={accentColor} />
+          )}
         </div>
       </div>
     </div>
@@ -201,8 +268,59 @@ const Projects = () => {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const isMobileLike = window.matchMedia("(max-width: 767px), (hover: none), (pointer: coarse)").matches;
+    if (!isMobileLike) return;
+
+    const videos = Array.from(section.querySelectorAll<HTMLVideoElement>("[data-project-video]"));
+    if (!videos.length) return;
+
+    const playOnly = (target: HTMLVideoElement | null) => {
+      videos.forEach((video) => {
+        if (video === target) {
+          void video.play().catch(() => {
+            // Ignore autoplay errors from stricter browser policies.
+          });
+          return;
+        }
+
+        video.pause();
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Keep only centered candidates and prefer the one with higher intersection ratio.
+        const centered = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!centered.length) return;
+
+        playOnly(centered[0].target as HTMLVideoElement);
+      },
+      {
+        // "Center band" of viewport where autoplay is active.
+        root: null,
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
+    );
+
+    videos.forEach((video) => observer.observe(video));
+
+    return () => {
+      observer.disconnect();
+      videos.forEach((video) => video.pause());
+    };
+  }, []);
+
   const projects = projectsData.map((p, i) => ({
     ...p,
+    year: t(`projects.items.${i}.year`),
     title: t(`projects.items.${i}.title`),
     problem: t(`projects.items.${i}.caseStudy.problem`),
     solution: t(`projects.items.${i}.caseStudy.solution`),
@@ -238,12 +356,17 @@ const Projects = () => {
           <ProjectCard
             key={i}
             number={String(i + 1).padStart(2, "0")}
-            year={t(`projects.items.${i}.year`, "2024")}
+            year={p.year}
             title={p.title}
             problem={p.problem}
             solution={p.solution}
             tags={p.stack}
             github={p.github}
+            videoMp4={p.videoMp4}
+            videoWebm={p.videoWebm}
+            videoPoster={p.videoPoster}
+            previewImage={p.url}
+            accentColor={p.shaderColor}
           />
         ))}
       </div>
