@@ -1,5 +1,8 @@
 export interface ProjectData {
   url: string;
+  videoMp4?: string;
+  videoWebm?: string;
+  videoPoster?: string;
   stack: string[];
   github: string;
   caseStudyStack: string[];
@@ -10,6 +13,7 @@ export interface ProjectData {
 export const projectsData: ProjectData[] = [
   {
     url: "https://i.postimg.cc/P5vgLVxd/shop_list.png",
+    videoMp4: "/projects/lista%20de%20compras.mp4",
     stack: ["React Native", "Expo", "TypeScript", "AsyncStorage"],
     github: "https://github.com/LuizHondo/rn-comprar",
     caseStudyStack: [
@@ -24,6 +28,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     url: "https://i.postimg.cc/pL5w9cTV/triple_peaks.png",
+    videoMp4: "/projects/site%20biblioteca.mp4",
     stack: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/LuizHondo/web_project_library_pt",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
@@ -32,6 +37,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     url: "https://i.postimg.cc/JzHfyYnm/around_us.png",
+    videoMp4: "/projects/site%20auth-full.mp4",
     stack: [
       "Node.js",
       "Express",
@@ -47,6 +53,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     url: "https://i.postimg.cc/dVZb7N1s/tripleten_gallery.png",
+    videoMp4: "/projects/site%20homeland.mp4",
     stack: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/LuizHondo/web_project_homeland",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
@@ -55,6 +62,7 @@ export const projectsData: ProjectData[] = [
   },
   {
     url: "https://i.postimg.cc/4xHDK2dJ/coffeshop.png",
+    videoMp4: "/projects/site%20coffeeshop.mp4",
     stack: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/LuizHondo/web_project_coffeeshop",
     caseStudyStack: ["HTML", "CSS", "JavaScript"],
