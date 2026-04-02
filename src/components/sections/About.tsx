@@ -102,10 +102,10 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section tag */}
         <span
-          className="font-mono text-xs uppercase tracking-widest block mb-12"
+          className="font-mono text-sm uppercase tracking-widest block mb-12"
           style={{ color: "var(--rust)" }}
         >
-          {t("about.tag", "// 01 — Sobre")}
+          {t("about.tag", "// 01 — Sobre mim")}
         </span>
 
         {/* Two-column layout */}

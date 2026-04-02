@@ -102,7 +102,7 @@ const Contact = () => {
       <div className="max-w-4xl mx-auto px-6 lg:px-12">
         {/* Section tag */}
         <span
-          className="font-mono text-xs uppercase tracking-widest block mb-8"
+          className="font-mono text-sm uppercase tracking-widest block mb-8"
           style={{ color: "var(--rust)" }}
         >
           {t("contact.tag", "// 03 — Contato")}

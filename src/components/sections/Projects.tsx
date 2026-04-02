@@ -335,7 +335,7 @@ const Projects = () => {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-12">
         <span
-          className="font-mono text-xs uppercase tracking-widest block mb-4"
+          className="font-mono text-sm uppercase tracking-widest block mb-4"
           style={{ color: "var(--rust)" }}
         >
           {t("projects.tag", "// 02 — Projetos")}

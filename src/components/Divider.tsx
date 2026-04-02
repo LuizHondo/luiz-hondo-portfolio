@@ -45,10 +45,7 @@ const Divider = ({ words, direction = "left" }: DividerProps) => {
   const repeated = [...words, ...words, ...words, ...words];
 
   return (
-    <div
-      className="overflow-hidden py-14"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}
-    >
+    <div className="overflow-hidden py-6">
       <div ref={trackRef} className="flex items-center gap-8 whitespace-nowrap will-change-transform">
         {repeated.map((word, i) => (
           <span
