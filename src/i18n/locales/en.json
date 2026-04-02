@@ -12,7 +12,7 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Luiz Hondo",
-    "title": "Building digital products that matter",
+    "title": "Real solutions for real problems",
     "eyebrow": "Full Stack Developer",
     "availability": "Available for projects",
     "location": "Presidente Prudente, SP",
@@ -21,25 +21,25 @@
       "React Specialist",
       "Problem Solver"
     ],
-    "tagline": "I turn real challenges into clear, efficient digital products that actually work.",
+    "tagline": "I listen first, build second. Every solution starts with understanding what your people actually need.",
     "projectsBtn": "View projects",
     "contactBtn": "Get in touch",
     "scrollHint": "Scroll to explore"
   },
   "about": {
     "heading": "About me",
-    "tag": "// 01 — About",
+    "tag": "about me",
     "imageAlt": "Picture of Luiz",
     "downloadCV": "Download CV",
-    "statement": "I build products that actually work,",
-    "statementMuted": "and are well executed.",
-    "bio": "I'm a fullstack developer with a degree in Systems Analysis, focused on turning real challenges into clear, efficient, and sustainable digital solutions. Throughout my career, I've learned that technology only creates value when it solves concrete problems and facilitates decisions. That's why I work with discipline, organization, and critical thinking, always seeking to understand the context before proposing any solution. I use tools like React, React Native, and TypeScript strategically — not just to build modern interfaces, but to structure scalable, well-planned, and long-term reliable applications. I believe trust is built through consistency, attention to detail, and commitment to deliveries that truly work. My goal is to develop solutions that make sense today and remain solid tomorrow.",
+    "statement": "I solve problems by understanding people,",
+    "statementMuted": "then building solutions that stick.",
+    "bio": "I start by understanding your world — your challenges, your people, what matters to you. Then I build real solutions that make things work better. I'm a fullstack developer with a degree in Systems Analysis, focused on turning real challenges into clear, efficient, and sustainable digital solutions. Throughout my career, I've learned that technology only creates value when it solves concrete problems and facilitates decisions. That's why I work with discipline, organization, and critical thinking, always seeking to understand the context before proposing any solution. I use tools like React, React Native, and TypeScript strategically — not just to build modern interfaces, but to structure scalable, well-planned, and long-term reliable applications. I believe trust is built through consistency, attention to detail, and commitment to deliveries that truly work. My goal is to develop solutions that make sense today and remain solid tomorrow.",
     "highlights": [
-      "turning real challenges into clear, efficient, and sustainable digital solutions",
-      "solves concrete problems and facilitates decisions",
+      "understanding your world",
+      "real solutions that make things work better",
+      "solves concrete problems",
       "long-term reliable",
-      "attention to detail and commitment to deliveries",
-      "remain solid tomorrow"
+      "attention to detail and commitment to deliveries"
     ],
     "facts": {
       "experience": {
@@ -129,12 +129,12 @@
     ]
   },
   "contact": {
-    "heading": "Let's talk?",
+    "heading": "Got a real challenge?",
     "tag": "// 03 — Contact",
-    "ctaHeading": "Got a project",
-    "ctaHeadingMuted": "in mind?",
+    "ctaHeading": "Ready to turn it",
+    "ctaHeadingMuted": "into reality?",
     "emailBtn": "Send email",
-    "description": "Help me help you! Do you have a problem or task and need to find a solution? An application? A system? A website that's uniquely yours? Send me a message with no strings attached and let's work on it together.",
+    "description": "Tell me about your challenge. I'll listen, understand what you need, and build something that actually works.",
     "nameLabel": "Name",
     "namePlaceholder": "Your name",
     "emailLabel": "Email",
@@ -173,6 +173,18 @@
         "description": "Well-structured APIs, optimized databases, and architecture built to grow without breaking. Clean, tested, and maintainable code."
       }
     ]
+  },
+  "howIThink": {
+    "tag": "// How I approach problems",
+    "title": "How I Think",
+    "intro": "I don't start with code. I start with questions.",
+    "questions": [
+      "What's the actual problem you're trying to solve?",
+      "Who are the people affected by it?",
+      "What does 'working' really look like for them?",
+      "What's the simplest thing that could actually help?"
+    ],
+    "closing": "Once I understand your world, I build real solutions — not features, not deliverables, but things that make people's lives easier. That's what I mean by 'solutions that stick'."
   },
   "caseStudy": {
     "problem": "Problem",
