@@ -9,6 +9,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
+import HowIThink from "@/components/sections/HowIThink";
 import Footer from "@/components/layout/Footer";
 import Divider from "@/components/Divider";
 
@@ -143,6 +144,7 @@ const Index = () => {
         <Hero />
         <Divider words={t("divider.row1", { returnObjects: true }) as string[]} direction="left" />
         <About />
+        <HowIThink />
         <Divider words={t("divider.row2", { returnObjects: true }) as string[]} direction="right" />
         <Projects />
         <Divider words={t("divider.row3", { returnObjects: true }) as string[]} direction="left" />
