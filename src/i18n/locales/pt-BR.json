@@ -68,6 +68,7 @@
     "items": [
       {
         "title": "Lista de Compras Mobile",
+        "year": "2026",
         "summary": "Aplicativo de lista de compras simples construído com React Native e Expo.",
         "caseStudy": {
           "title": "Lista de Compras Mobile",
@@ -79,6 +80,7 @@
       },
       {
         "title": "Site de Biblioteca Digital",
+        "year": "2025",
         "summary": "Interface web inspirada em catálogo de biblioteca, com foco em layout e organização.",
         "caseStudy": {
           "title": "Biblioteca Digital — Website",
@@ -90,6 +92,7 @@
       },
       {
         "title": "API Completa com Autenticação + Frontend React",
+        "year": "2025",
         "summary": "Projeto full-stack com API em Node.js/Express e frontend em React.",
         "caseStudy": {
           "title": "API Completa com Autenticação + Frontend React",
@@ -101,6 +104,7 @@
       },
       {
         "title": "Site de Landing Page Homeland",
+        "year": "2025",
         "summary": "Projeto front-end focado em layout, responsividade e estética moderna.",
         "caseStudy": {
           "title": "Landing Page Homeland",
@@ -112,6 +116,7 @@
       },
       {
         "title": "Site CoffeeShop",
+        "year": "2025",
         "summary": "Site temático estilo cafeteria com foco em UI agradável e organização visual.",
         "caseStudy": {
           "title": "CoffeeShop Website",
@@ -230,11 +235,17 @@
     ],
     "row2": [
       "React",
-      "Node",
+      "React Native",
       "Next.js",
       "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
       "PostgreSQL",
-      "Tailwind"
+      "Tailwind",
+      "Expo",
+      "JWT"
     ],
     "row3": [
       "Do conceito à interface"

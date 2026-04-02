@@ -68,6 +68,7 @@
     "items": [
       {
         "title": "Mobile Shopping List",
+        "year": "2026",
         "summary": "A simple shopping list app built with React Native and Expo.",
         "caseStudy": {
           "title": "Mobile Shopping List",
@@ -79,6 +80,7 @@
       },
       {
         "title": "Digital Library Website",
+        "year": "2025",
         "summary": "A web interface inspired by a library catalog, focusing on layout and organization.",
         "caseStudy": {
           "title": "Digital Library — Website",
@@ -90,6 +92,7 @@
       },
       {
         "title": "Full API with Authentication + React Frontend",
+        "year": "2025",
         "summary": "Full-stack project with a Node.js/Express API and React frontend.",
         "caseStudy": {
           "title": "Full API with Authentication + React Frontend",
@@ -101,6 +104,7 @@
       },
       {
         "title": "Homeland Landing Page",
+        "year": "2025",
         "summary": "A front-end project focused on layout, responsiveness, and modern aesthetics.",
         "caseStudy": {
           "title": "Homeland Landing Page",
@@ -112,6 +116,7 @@
       },
       {
         "title": "CoffeeShop Website",
+        "year": "2025",
         "summary": "A coffee shop themed website focused on pleasant UI and visual organization.",
         "caseStudy": {
           "title": "CoffeeShop Website",
@@ -230,14 +235,17 @@
     ],
     "row2": [
       "React",
-      "Node",
+      "React Native",
       "Next.js",
       "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
       "PostgreSQL",
-      "Docker",
-      "Prisma",
-      "Redis",
-      "Tailwind"
+      "Tailwind",
+      "Expo",
+      "JWT"
     ],
     "row3": [
       "From concept to interface"
