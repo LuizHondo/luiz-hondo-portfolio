@@ -93,7 +93,7 @@ const TopNav = () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          luiz<span style={{ color: "var(--rust)" }}>.</span>
+          Luiz Hondo<span style={{ color: "var(--rust)" }}>.</span>
         </a>
 
         {/* Desktop links */}
