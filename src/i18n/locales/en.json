@@ -16,7 +16,11 @@
     "eyebrow": "Full Stack Developer",
     "availability": "Available for projects",
     "location": "Presidente Prudente, SP",
-    "titles": ["Fullstack Developer", "React Specialist", "Problem Solver"],
+    "titles": [
+      "Fullstack Developer",
+      "React Specialist",
+      "Problem Solver"
+    ],
     "tagline": "I turn real challenges into clear, efficient digital products that actually work.",
     "projectsBtn": "View projects",
     "contactBtn": "Get in touch",
@@ -38,10 +42,22 @@
       "remain solid tomorrow"
     ],
     "facts": {
-      "experience": { "label": "Experience", "value": "5+ years" },
-      "projects": { "label": "Projects delivered", "value": "10+" },
-      "focus": { "label": "Focus", "value": "Product" },
-      "approach": { "label": "Approach", "value": "Full Stack" }
+      "experience": {
+        "label": "Experience",
+        "value": "3+ years"
+      },
+      "projects": {
+        "label": "Projects delivered",
+        "value": "10+"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Product"
+      },
+      "approach": {
+        "label": "Approach",
+        "value": "Full Stack"
+      }
     }
   },
   "projects": {
@@ -207,9 +223,25 @@
     "captionFontLoading": "Caption font is still loading. Please wait and try again."
   },
   "divider": {
-    "row1": ["Structure", "Presence", "Capability"],
-    "row2": ["React", "Node", "Next.js", "TypeScript", "PostgreSQL", "Docker", "Prisma", "Redis", "Tailwind"],
-    "row3": ["From concept to interface"]
+    "row1": [
+      "Structure",
+      "Presence",
+      "Capability"
+    ],
+    "row2": [
+      "React",
+      "Node",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker",
+      "Prisma",
+      "Redis",
+      "Tailwind"
+    ],
+    "row3": [
+      "From concept to interface"
+    ]
   },
   "footer": {
     "copyright": "© {{year}} Luiz Hondo. All rights reserved."
