@@ -37,6 +37,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
+        <meta
+          name="facebook-domain-verification"
+          content="8owvcjyae1lafzca1uss3l2pwlns4y"
+        />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
